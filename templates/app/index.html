@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="zxx">
+{% load static %}
 
-<!-- Mirrored from duruthemes.com/demo/html/patara/multipage-light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 28 Jan 2024 10:47:46 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Patara - Resort & Spa Hotel</title>
-    <link rel="shortcut icon" href="img/favicon.png" />
+    <link rel="shortcut icon" href="{% static "assets/img/favicon.png" %}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&amp;family=Outfit:wght@300;400&amp;display=swap">
-    <link rel="stylesheet" href="css/plugins.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="{% static "assets/css/plugins.css" %}" />
+    <link rel="stylesheet" href="{% static "assets/css/style.css" %}" />
 </head>
 <body>
     <!-- Preloader -->
@@ -31,7 +31,7 @@
         <div class="container">
             <!-- Logo -->
             <div class="logo-wrapper">
-                <a class="logo" href="index.html"> <img src="img/logo-light.png" class="logo-img" alt=""> </a>
+                <a class="logo" href="index.html"> <img src="{% static "assets/img/logo-light.png" %}" class="logo-img" alt=""> </a>
             </div>
             <!-- Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"><i class="ti-menu"></i></span> </button>
@@ -106,7 +106,7 @@
     <header class="header slider-fade">
         <div class="owl-carousel owl-theme">
             <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9. -->
-            <div class="text-center item bg-img" data-overlay-dark="6" data-background="img/slider/1.jpg">
+            <div class="text-center item bg-img" data-overlay-dark="6" data-background="{% static "assets/img/slider/1.jpg" %}">
                 <div class="v-middle caption">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -125,7 +125,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center item bg-img" data-overlay-dark="6" data-background="img/slider/6.jpg">
+            <div class="text-center item bg-img" data-overlay-dark="6" data-background="{% static "assets/img/slider/6.jpg" %}">
                 <div class="v-middle caption">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -144,7 +144,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center item bg-img" data-overlay-dark="4" data-background="img/slider/5.jpg">
+            <div class="text-center item bg-img" data-overlay-dark="4" data-background="{% static "assets/img/slider/5.jpg" %}">
                 <div class="v-middle caption">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -266,10 +266,10 @@
                         </div>
                         <div class="col-lg-6 col-md-12">
                             <div class="row g-3">
-                                <div class="col-6 text-end"> <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="img/about-1.jpg" style="margin-top: 25%;"> </div>
-                                <div class="col-6 text-start"> <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="img/about-2.jpg"> </div>
-                                <div class="col-6 text-end"> <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="img/about-3.jpg"> </div>
-                                <div class="col-6 text-start"> <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="img/about-4.jpg"> </div>
+                                <div class="col-6 text-end"> <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="{% static "assets/img/about-1.jpg" %}" style="margin-top: 25%;"> </div>
+                                <div class="col-6 text-start"> <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="{% static "assets/img/about-2.jpg" %}"> </div>
+                                <div class="col-6 text-end"> <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="{% static "assets/img/about-3.jpg" %}"> </div>
+                                <div class="col-6 text-start"> <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="{% static "assets/img/about-4.jpg" %}"> </div>
                             </div>
                         </div>
                     </div>
@@ -291,7 +291,7 @@
             </div>
             <div class="rooms1-carousel owl-theme owl-carousel">
                 <div class="rooms1-single">
-                    <div class="rooms1-img"> <img src="img/rooms/15.jpg" alt=""> </div>
+                    <div class="rooms1-img"> <img src="{% static "assets/img/rooms/15.jpg" %}" alt=""> </div>
                     <div class="rooms1-content">
                         <div class="row">
                             <div class="col-md-6">
@@ -308,7 +308,7 @@
                     </div>
                 </div>
                 <div class="rooms1-single">
-                    <div class="rooms1-img"> <img src="img/rooms/12.jpg" alt=""> </div>
+                    <div class="rooms1-img"> <img src="{% static "assets/img/rooms/12.jpg" %}" alt=""> </div>
                     <div class="rooms1-content">
                         <div class="row">
                             <div class="col-md-6">
@@ -325,7 +325,7 @@
                     </div>
                 </div>
                 <div class="rooms1-single">
-                    <div class="rooms1-img"> <img src="img/rooms/13.jpg" alt=""> </div>
+                    <div class="rooms1-img"> <img src="{% static "assets/img/rooms/13.jpg" %}" alt=""> </div>
                     <div class="rooms1-content">
                         <div class="row">
                             <div class="col-md-6">
@@ -342,7 +342,7 @@
                     </div>
                 </div>
                 <div class="rooms1-single">
-                    <div class="rooms1-img"> <img src="img/rooms/18.jpg" alt=""> </div>
+                    <div class="rooms1-img"> <img src="{% static "assets/img/rooms/18.jpg" %}" alt=""> </div>
                     <div class="rooms1-content">
                         <div class="row">
                             <div class="col-md-6">
@@ -359,7 +359,7 @@
                     </div>
                 </div>
                 <div class="rooms1-single">
-                    <div class="rooms1-img"> <img src="img/rooms/19.jpg" alt=""> </div>
+                    <div class="rooms1-img"> <img src="{% static "assets/img/rooms/19.jpg" %}" alt=""> </div>
                     <div class="rooms1-content">
                         <div class="row">
                             <div class="col-md-6">
@@ -376,7 +376,7 @@
                     </div>
                 </div>
                 <div class="rooms1-single">
-                    <div class="rooms1-img"> <img src="img/rooms/16.jpg" alt=""> </div>
+                    <div class="rooms1-img"> <img src="{% static "assets/img/rooms/16.jpg" %}" alt=""> </div>
                     <div class="rooms1-content">
                         <div class="row">
                             <div class="col-md-6">
@@ -396,7 +396,7 @@
         </div>
     </section>
     <!-- Promo Video -->
-    <section class="video-wrapper video section-padding bg-img bg-fixed" data-overlay-dark="5" data-background="img/slider/1.jpg">
+    <section class="video-wrapper video section-padding bg-img bg-fixed" data-overlay-dark="5" data-background="{% static "assets/img/slider/1.jpg" %}">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-12 text-center">
@@ -468,7 +468,7 @@
     </section>
     <!-- Testiominals -->
     <section class="testimonials">
-        <div class="background bg-img bg-fixed section-padding pb-0" data-background="img/rooms/18.jpg" data-overlay-dark="4">
+        <div class="background bg-img bg-fixed section-padding pb-0" data-background="{% static "assets/img/rooms/18.jpg" %}" data-overlay-dark="4">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
@@ -487,7 +487,7 @@
                                     </span>
                                     <h5>"Hotel was great. Location was excellent in that it was close to everywhere I wanted to go. The staff was incredible. At my every beckoning and call. Room was smaller than I'd like but this was NY so to be expected. A great experience all around!"</h5>
                                     <div class="info">
-                                        <div class="author-img"> <img src="img/team/1.jpg" alt=""> </div>
+                                        <div class="author-img"> <img src="{% static "assets/img/team/1.jpg" %}" alt=""> </div>
                                         <div class="cont">
                                             <h6>Demeail S.</h6> <span>Customer Review</span>
                                         </div>
@@ -502,7 +502,7 @@
                                     </span>
                                     <h5>"Great space for events. They were able to cater to the event I was working while simultaneously having an event and a wedding on separate floors. Hotel is massive. Employees are very friendly and always willing to help if need be. Will definitely be having more events here in the future."</h5>
                                     <div class="info">
-                                        <div class="author-img"> <img src="img/team/3.jpg" alt=""> </div>
+                                        <div class="author-img"> <img src="{% static "assets/img/team/3.jpg" %}" alt=""> </div>
                                         <div class="cont">
                                             <h6>Ray Smith</h6> <span>Customer Review</span>
                                         </div>
@@ -531,7 +531,7 @@
                 <div class="col-md-4">
                     <div class="item">
                         <div class="item-wrap">
-                            <div class="img"> <img src="img/news/1.jpg" alt=""> </div>
+                            <div class="img"> <img src="{% static "assets/img/news/1.jpg" %}" alt=""> </div>
                             <div class="con">
                                 <div class="title-box">
                                     <h3><a href="#">Restaurant & Bar</a></h3>
@@ -544,7 +544,7 @@
                 <div class="col-md-4">
                     <div class="item">
                         <div class="item-wrap">
-                            <div class="img"> <img src="img/news/2.jpg" alt=""> </div>
+                            <div class="img"> <img src="{% static "assets/img/news/2.jpg" %}" alt=""> </div>
                             <div class="con">
                                 <div class="title-box">
                                     <h3><a href="#">Spa & Wellness</a></h3>
@@ -557,7 +557,7 @@
                 <div class="col-md-4">
                     <div class="item">
                         <div class="item-wrap">
-                            <div class="img"> <img src="img/news/5.jpg" alt=""> </div>
+                            <div class="img"> <img src="{% static "assets/img/news/5.jpg" %}" alt=""> </div>
                             <div class="con">
                                 <div class="title-box">
                                     <h3><a href="#">Events & Meetings</a></h3>
@@ -571,7 +571,7 @@
         </div>
     </section>
     <!-- Booking Search -->
-    <section class="section-padding bg-img bg-fixed" data-overlay-dark="3" data-background="img/rooms/18.jpg">
+    <section class="section-padding bg-img bg-fixed" data-overlay-dark="3" data-background="{% static "assets/img/rooms/18.jpg" %}">
         <div class="container">
             <div class="booking-inner clearfix">
                 <form action="#" class="form1 clearfix">
@@ -653,7 +653,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme">
-                        <div class="item bg-img" data-background="img/news/7.jpg">
+                        <div class="item bg-img" data-background="{% static "assets/img/news/7.jpg" %}">
                             <div class="content">
                                 <div class="info">
                                     <a href="blog.html"> <span><i class="ti-time" aria-hidden="true"></i>28 Dec 2024</span></a>
@@ -665,7 +665,7 @@
                                 <div class="arrow"> <a href="post.html"><span class="ti-arrow-right"></span></a> </div>
                             </div>
                         </div>
-                        <div class="item bg-img" data-background="img/news/3.jpg">
+                        <div class="item bg-img" data-background="{% static "assets/img/news/3.jpg" %}">
                             <div class="content">
                                 <div class="info">
                                     <a href="blog.html"> <span><i class="ti-time" aria-hidden="true"></i>26 Dec 2024</span></a>
@@ -677,7 +677,7 @@
                                 <div class="arrow"> <a href="post.html"><span class="ti-arrow-right"></span></a> </div>
                             </div>
                         </div>
-                        <div class="item bg-img" data-background="img/news/9.jpg">
+                        <div class="item bg-img" data-background="{% static "assets/img/news/9.jpg" %}">
                             <div class="content">
                                 <div class="info">
                                     <a href="blog.html"> <span><i class="ti-time" aria-hidden="true"></i>24 Dec 2024</span></a>
@@ -689,7 +689,7 @@
                                 <div class="arrow"> <a href="post.html"><span class="ti-arrow-right"></span></a> </div>
                             </div>
                         </div>
-                        <div class="item bg-img" data-background="img/news/8.jpg">
+                        <div class="item bg-img" data-background="{% static "assets/img/news/8.jpg" %}">
                             <div class="content">
                                 <div class="info">
                                     <a href="blog.html"> <span><i class="ti-time" aria-hidden="true"></i>22 Dec 2024</span></a>
@@ -701,7 +701,7 @@
                                 <div class="arrow"> <a href="post.html"><span class="ti-arrow-right"></span></a> </div>
                             </div>
                         </div>
-                        <div class="item bg-img" data-background="img/news/2.jpg">
+                        <div class="item bg-img" data-background="{% static "assets/img/news/2.jpg" %}">
                             <div class="content">
                                 <div class="info">
                                     <a href="blog.html"> <span><i class="ti-time" aria-hidden="true"></i>20 Dec 2024</span></a>
@@ -713,7 +713,7 @@
                                 <div class="arrow"> <a href="post.html"><span class="ti-arrow-right"></span></a> </div>
                             </div>
                         </div>
-                        <div class="item bg-img" data-background="img/news/5.jpg">
+                        <div class="item bg-img" data-background="{% static "assets/img/news/5.jpg" %}">
                             <div class="content">
                                 <div class="info">
                                     <a href="blog.html"> <span><i class="ti-time" aria-hidden="true"></i>18 Dec 2024</span></a>
@@ -779,26 +779,25 @@
         </div>
     </footer>
     <!-- jQuery -->
-    <script src="js/jquery-3.6.3.min.js"></script>
-    <script src="js/jquery-migrate-3.0.0.min.js"></script>
-    <script src="js/modernizr-2.6.2.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/jquery.isotope.v3.0.2.js"></script>
-    <script src="js/pace.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scrollIt.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/jquery.magnific-popup.js"></script>
-    <script src="js/YouTubePopUp.js"></script>
-    <script src="js/select2.js"></script>
-    <script src="js/datepicker.js"></script>
-    <script src="js/smooth-scroll.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="{% static "assets/js/jquery-3.6.3.min.js" %}"></script>
+    <script src="{% static "assets/js/jquery-migrate-3.0.0.min.js" %}"></script>
+    <script src="{% static "assets/js/modernizr-2.6.2.min.js" %}"></script>
+    <script src="{% static "assets/js/imagesloaded.pkgd.min.js" %}"></script>
+    <script src="{% static "assets/js/jquery.isotope.v3.0.2.js" %}"></script>
+    <script src="{% static "assets/js/pace.js" %}"></script>
+    <script src="{% static "assets/js/popper.min.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "assets/js/scrollIt.min.js" %}"></script>
+    <script src="{% static "assets/js/jquery.waypoints.min.js" %}"></script>
+    <script src="{% static "assets/js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "assets/js/jquery.stellar.min.js" %}"></script>
+    <script src="{% static "assets/js/jquery.magnific-popup.js" %}"></script>
+    <script src="{% static "assets/js/YouTubePopUp.js" %}"></script>
+    <script src="{% static "assets/js/select2.js" %}"></script>
+    <script src="{% static "assets/js/datepicker.js" %}"></script>
+    <script src="{% static "assets/js/smooth-scroll.min.js" %}"></script>
+    <script src="{% static "assets/js/wow.min.js" %}"></script>
+    <script src="{% static "assets/js/custom.js" %}"></script>
 </body>
 
-<!-- Mirrored from duruthemes.com/demo/html/patara/multipage-light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 28 Jan 2024 10:48:11 GMT -->
 </html>

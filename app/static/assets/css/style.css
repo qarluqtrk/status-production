@@ -3,7 +3,7 @@
 
  01. Basics & Typography style
  02. Helper style
- 03. Selection style 
+ 03. Selection style
  04. Preloader style
  05. Owl-Theme custom style
  06. Section style
@@ -50,7 +50,7 @@
  47. toTop Button style
  48. Overlay Effect Bg image style
  49. Responsive (Media Query)
- 
+
 
 ------------------------------------------------------- */
 
@@ -291,7 +291,7 @@ blockquote cite:before {
     bottom: 5px;
     width: 45px;
     height: 1px;
-    border-top: 1px solid; 
+    border-top: 1px solid;
     border-color:inherit;
     color: #aa8453;
 }
@@ -1090,7 +1090,7 @@ color: #aa8453;
         visibility: visible;
         transform: translateY(0);
         transition: 1s;
-    }    
+    }
 }
 @media screen and (max-width: 991px) {
     .navbar {
@@ -1155,7 +1155,7 @@ color: #aa8453;
     }
     .nav-scroll .navbar-collapse .active {
         color: #aa8453 !important;
-    }   
+    }
     .navbar .dropdown-menu .dropdown-item {
         padding: 0 15px;
         line-height: 40px;
@@ -1269,7 +1269,7 @@ color: #aa8453;
 }
 .header .caption p span {
     letter-spacing: 5px;
-    
+
     margin: 0 5px;
     padding-right: 14px;
     position: relative;
@@ -1483,7 +1483,7 @@ hr {
     margin-bottom: 15px;
     font-family: 'Libre Caslon Display', serif;
     font-size: 55px;
-    
+
     line-height: 1.2em;
     -webkit-animation-delay: .6s;
     animation-delay: .6s;
@@ -1494,7 +1494,7 @@ hr {
 @media screen and (max-width: 767px) {
 .kenburns-inner .caption h4 {
     font-size: 12px;
-}   
+}
 .kenburns-inner .caption h1 {
     font-size: 45px;
     margin-bottom: 15px;
@@ -1711,7 +1711,7 @@ hr {
   flex-direction: column;
   justify-content: center;
   align-items: right;
-    
+
 }
 .video-lauch-wrapper {
   border: none;
@@ -1730,7 +1730,7 @@ hr {
   height: 100%;
   margin: 0;
   box-sizing: border-box;
-  text-align: center; 
+  text-align: center;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2079,7 +2079,7 @@ hr {
     -webkit-box-ordinal-group: 2 !important;
         -ms-flex-order: 1 !important;
             order: 1 !important;
-  } 
+  }
     .rooms1-content .book {
     text-align: -webkit-left;
     margin-top: 3px;
@@ -2182,7 +2182,7 @@ hr {
     color: #aa8453;
     font-family: 'Outfit', serif;
     font-weight: 400;
-    
+
     text-transform: uppercase;
 }
 .rooms2 .content .cont h6 span {
@@ -2379,7 +2379,7 @@ hr {
     -webkit-box-ordinal-group: 2 !important;
         -ms-flex-order: 1 !important;
             order: 1 !important;
-  }  
+  }
 }
 @media screen and (max-width: 480px) {
     .rooms2 .content {
@@ -2777,7 +2777,7 @@ hr {
 /* ======= Rooms 5 style ======= */
 .rooms5 {
     position: relative;
-        
+
 }
 .rooms5 .item {
     width: 100%;
@@ -2821,7 +2821,7 @@ hr {
     padding-top: 0px;
     opacity: 0;
     visibility: hidden;
-    transition: all ease .4s;   
+    transition: all ease .4s;
 }
 .rooms5 .item .desc .price span {
     font-family: 'Outfit', sans-serif;
@@ -2854,7 +2854,7 @@ hr {
 .rooms5 .item:hover .desc .rbtn {
     bottom: -30px
 }
-.rooms5 .item .desc .rbtn:last-of-type, 
+.rooms5 .item .desc .rbtn:last-of-type,
 .rooms5 .item .desc .rbtn:last-child {
     margin-right: 0;
 }
@@ -3919,7 +3919,7 @@ button.mfp-arrow {
     .btn-form1-submit:after {
         background: none;
     }
-    
+
 }
 /* booking form */
 .booking-box {
@@ -3962,7 +3962,7 @@ button.mfp-arrow {
     outline: none;
     outline: 0;
     border: none;
-    box-shadow: none; 
+    box-shadow: none;
 }
 .menu-book .menu-list .item {
     line-height: 35px;
@@ -4446,7 +4446,7 @@ button.mfp-arrow {
     .services3-content .services3-img:before {
         display: none;
     }
-    
+
     .services3-content .services3-text {
         padding: 40px 30px;
     }
@@ -4655,7 +4655,7 @@ button.mfp-arrow {
 .pricing .price {
     margin: 0;
     padding: 0;
-    display: block; 
+    display: block;
     margin-bottom: 15px;
 }
 .pricing .price sup {
@@ -4681,10 +4681,10 @@ button.mfp-arrow {
     padding-bottom: 15px;
     font-family: 'Libre Caslon Display', serif;
 }
-.pricing .pricing-text, 
+.pricing .pricing-text,
 .pricing .pricing-text li {
     padding: 0;
-    margin: 0; 
+    margin: 0;
 }
 .pricing .pricing-text li {
     list-style: none;
@@ -4697,11 +4697,11 @@ button.mfp-arrow {
     color: #aa8453;
     margin-right: 10px;
 }
-.pricing:hover, 
+.pricing:hover,
 .pricing:focus {
     -webkit-box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.11);
     -moz-box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.11);
-    box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.11); 
+    box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.11);
 }
 .pricing .butn-dark {
     display: grid;
@@ -4729,9 +4729,9 @@ button.mfp-arrow {
 .blog-home .item:hover:after {
   opacity: 0;
 }
-.blog-home .item:hover h5, 
-.blog-home .item:hover p, 
-.blog-home .item:hover span, 
+.blog-home .item:hover h5,
+.blog-home .item:hover p,
+.blog-home .item:hover span,
 .blog-home .item:hover span i {
   color: #fff;
 }
@@ -4899,7 +4899,7 @@ button.mfp-arrow {
     font-size: 12px;
     text-align: right;
 	0
-	
+
 	margin-bottom: 5px;
 }
 .blog .post-cont .date a {
@@ -5069,7 +5069,7 @@ button.mfp-arrow {
 .blog-post-caption h1 {
     margin-bottom: 15px;
     font-size: 40px;
-    
+
 }
 .blog-post-comment-wrap {
     display: flex;
@@ -5099,7 +5099,7 @@ button.mfp-arrow {
     font-size: 30px;
     color: #1b1b1b;
 }
-.map {	
+.map {
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
 	}
@@ -5917,7 +5917,7 @@ font-size: 15px;
     .footer .bottom p.right {
         text-align: left;
     }
-    .banner-video-wrapper .wrap-content h1, 
+    .banner-video-wrapper .wrap-content h1,
     .banner-video-wrapper .wrap-content .h1 {
         display: none;
     }
@@ -5960,12 +5960,12 @@ font-size: 15px;
         margin-left: 15px;
         margin-right: 15px;
     }
-    
-    .comming h1 { 
+
+    .comming h1 {
         font-size: 120px;
         line-height: 120px;
     }
-    
+
     .comming h2 {
         font-size: 30px;
     }
