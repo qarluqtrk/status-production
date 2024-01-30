@@ -1,8 +1,12 @@
 from django.shortcuts import render
 
+from app.models import Room
+
 
 def index_view(request):
-    return render(request=request, template_name='app/index.html')
+    rooms = Room.objects.all()
+    return render(request=request, template_name='app/index.html',
+                  context={'rooms': rooms})
 
 
 def about_view(request):
