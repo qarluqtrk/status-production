@@ -1,6 +1,8 @@
-<!DOCTYPE html>
-<html lang="zxx">
 {% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -45,13 +47,13 @@
     <!-- datepicker frame -->
     <div class="knsl-datepicker-place"></div>
 
-    <!-- top bar -->
+      <!-- top bar -->
     <div class="knsl-top-bar">
         <div class="container">
             <div class="knsl-left-side">
                 <!-- logo -->
                 <a href="/" class="knsl-logo-frame">
-                    <img src="{% static "img/logo.png" %}" alt="Kinsley">
+                    <img src="{% static "img/logo.png" %}" alt="Hotel Status">
                 </a>
                 <!-- logo end -->
             </div>
@@ -61,42 +63,92 @@
                     <nav>
                         <ul>
                             <li class="menu-item-has-children">
-                                <a href="/">Asosiy</a>
-
+                                <a href="/">{% trans 'Asosiy' %}</a>
                             </li>
+
                             <li>
-                                <a href="{% url 'about' %}">Haqida</a>
+                                <a href="{% url 'about' %}">{% trans 'Haqida' %}</a>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="{% url 'rooms' %}">Xonalar</a>
 
-                            </li>
                             <li class="menu-item-has-children">
-                                <a href="{% url 'restaurant' %}">Restoran</a>
+                                <a href="{% url 'rooms' %}">{% trans 'Xonalar' %}</a>
+                            </li>
+
+                            <li class="menu-item-has-children">
+                                <a href="{% url 'restaurant' %}">{% trans 'Restoran' %}</a>
                                 <ul>
-                                    <li><a href="{% url 'restaurant' %}">Restoran sahifasi</a></li>
-                                    <li><a href="{% url 'menu' %}">Menu</a></li>
+                                    <li><a href="{% url 'restaurant' %}">{% trans 'Restoran sahifasi' %}</a></li>
+                                    <li><a href="{% url 'menu' %}">{% trans 'Menu' %}</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="{% url 'contact' %}">Aloqa</a>
 
+                            <li>
+                                <a href="{% url 'contact' %}">{% trans 'Aloqa' %}</a>
                             </li>
+
                             <li class="menu-item-has-children current-item">
-                                <a href="#">Sahifalar</a>
+                                <a href="#">{% trans 'Sahifalar' %}</a>
                                 <ul>
-                                    <li><a href="{% url 'blogs' %}">Yangiliklar</a></li>
-                                    <li><a href="{% url 'gallery' %}">Galleriya</a></li>
-                                    <li><a href="{% url 'faq' %}">Savollar</a></li>
+                                    <li><a href="{% url 'blogs' %}">{% trans 'Yangiliklar' %}</a></li>
+                                    <li><a href="{% url 'gallery' %}">{% trans 'Galereya' %}</a></li>
+                                    <li><a href="{% url 'faq' %}">{% trans 'Savollar' %}</a></li>
                                 </ul>
                             </li>
+                                                        <li class="menu-item-has-children">
+                                {% with current_language=request.LANGUAGE_CODE %}
+                                    {% if current_language == "uz" %}
+                                        <a href="#">
+                                            <img style="width: 40px" src="{% static 'img/uz.png' %}" alt="">
+                                        </a>
+                                    {% elif current_language == "en" %}
+                                        <a href="#">
+                                            <img style="width: 40px" src="{% static 'img/united-kingdom (1).png' %}" alt="">
+                                        </a>
+                                    {% elif current_language == "ru" %}
+                                        <a href="#">
+                                            <img style="width: 40px" src="{% static 'img/russia.png' %}" alt="">
+                                        </a>
+                                    {% endif %}
+
+
+
+
+
+
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'set-language' 'uz' %}">
+                                                <img style="width: 40px" src="{% static 'img/uz.png' %}" alt="">
+                                                {{ _('Uzbek') }}
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'set-language' 'en' %}">
+                                                <img style="width: 40px" src="{% static 'img/united-kingdom (1).png' %}"
+                                                     alt="">
+                                                {{ _('English') }}
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'set-language' 'ru' %}">
+                                                <img style="width: 40px" src="{% static 'img/russia.png' %}" alt="">
+                                                {{ _('Russian') }}
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                {% endwith %}
+                            </li>
+
                         </ul>
+
                     </nav>
                 </div>
                 <!-- menu end -->
                 <!-- action button -->
-                <a id="book-popup" class="knsl-btn"><img src="{% static "img/icons/bookmark.svg" %}" alt="icon">Hoziroq
-                    band qiling</a>
+                <a id="book-popup" class="knsl-btn"><img src="{% static "img/icons/bookmark.svg" %}" alt="icon">{% trans "Hoziroq band qiling" %}</a>
                 <!-- action button end -->
             </div>
             <!-- menu button -->
@@ -105,7 +157,6 @@
         </div>
     </div>
     <!-- top bar end -->
-
     <!-- banner -->
     <section class="knsl-banner-simple knsl-transition-bottom">
         <img src="{% static "img/palm.svg" %}" class="knsl-deco-left" alt="palm">

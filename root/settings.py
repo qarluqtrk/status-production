@@ -119,8 +119,7 @@ LANGUAGES = [
     ('uz', _('Uzbek')),
     ('ru', _('Russian')),
     ('en', _('English')),
-    ('fr', _('French')),
-    ('de', _('German')),
+
 ]
 
 LOCALE_PATHS = [
@@ -128,7 +127,7 @@ LOCALE_PATHS = [
 ]
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
-MODELTRANSLATION_LANGUAGES = ('uz', 'ru', 'en', 'fr', 'de')
+MODELTRANSLATION_LANGUAGES = ('uz', 'ru', 'en')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
