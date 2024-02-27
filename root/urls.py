@@ -4,12 +4,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from app.views.other.main import set_language
+from app.views.main import set_language
 
-urlpatterns = i18n_patterns(
-    path('admin/', admin.site.urls),
-    path('grappelli/', include('grappelli.urls')),
-    path("set_language/<str:language>", set_language, name="set-language"),
+urlpatterns = [
+                  path('admin/', admin.site.urls),
+                  path('', include('app.urls')),
+                  path('grappelli/', include('grappelli.urls')),
+                  path("set_language/<str:language>", set_language, name="set-language"),
 
-    path('', include('app.urls'))
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# commit
+urlpatterns = [
+    *i18n_patterns(*urlpatterns, prefix_default_language=False),
+]

@@ -207,14 +207,30 @@ h6 {
 
 /***************************
 
+
+
+
+
+
+
+
 image
 
 ***************************/
 /* line 170, ../scss/_common.scss */
+/* line 170, ../scss/_common.scss */
+
 .knsl-default-img {
   width: 100%;
   border: solid 10px #FFFFFF;
-  border-radius: 10px; }
+  border-radius: 10px;
+
+  /* Updated style for background */
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+}
+
 
 /***************************
 

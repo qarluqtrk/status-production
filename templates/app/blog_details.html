@@ -47,7 +47,7 @@
     <!-- datepicker frame -->
     <div class="knsl-datepicker-place"></div>
 
-      <!-- top bar -->
+    <!-- top bar -->
     <div class="knsl-top-bar">
         <div class="container">
             <div class="knsl-left-side">
@@ -86,15 +86,17 @@
                                 <a href="{% url 'contact' %}">{% trans 'Aloqa' %}</a>
                             </li>
 
-                            <li class="menu-item-has-children current-item">
-                                <a href="#">{% trans 'Sahifalar' %}</a>
-                                <ul>
-                                    <li><a href="{% url 'blogs' %}">{% trans 'Yangiliklar' %}</a></li>
-                                    <li><a href="{% url 'gallery' %}">{% trans 'Galereya' %}</a></li>
-                                    <li><a href="{% url 'faq' %}">{% trans 'Savollar' %}</a></li>
-                                </ul>
+                            <li class="menu-item-has-children">
+                                <a href="{% url "blogs" %}">{% trans 'Yangiliklar' %}</a>
+
                             </li>
-                                                        <li class="menu-item-has-children">
+
+
+                            <li class="menu-item-has-children">
+                                <a href="{% url 'gallery' %}">{% trans 'Galereya' %}</a>
+                            </li>
+
+                            <li class="menu-item-has-children">
                                 {% with current_language=request.LANGUAGE_CODE %}
                                     {% if current_language == "uz" %}
                                         <a href="#">
@@ -102,53 +104,47 @@
                                         </a>
                                     {% elif current_language == "en" %}
                                         <a href="#">
-                                            <img style="width: 40px" src="{% static 'img/united-kingdom (1).png' %}" alt="">
+                                            <img style="width: 40px" src="{% static 'img/united-kingdom11.png' %}"
+                                                 alt="">
                                         </a>
                                     {% elif current_language == "ru" %}
                                         <a href="#">
                                             <img style="width: 40px" src="{% static 'img/russia.png' %}" alt="">
                                         </a>
                                     {% endif %}
-
-
-
-
-
-
                                     <ul>
                                         <li>
                                             <a href="{% url 'set-language' 'uz' %}">
                                                 <img style="width: 40px" src="{% static 'img/uz.png' %}" alt="">
-                                                {{ _('Uzbek') }}
+                                                Uzbek
                                             </a>
                                         </li>
 
                                         <li>
                                             <a href="{% url 'set-language' 'en' %}">
-                                                <img style="width: 40px" src="{% static 'img/united-kingdom (1).png' %}"
+                                                <img style="width: 40px" src="{% static 'img/united-kingdom11.png' %}"
                                                      alt="">
-                                                {{ _('English') }}
+                                                English
                                             </a>
                                         </li>
 
                                         <li>
                                             <a href="{% url 'set-language' 'ru' %}">
                                                 <img style="width: 40px" src="{% static 'img/russia.png' %}" alt="">
-                                                {{ _('Russian') }}
+                                                Russian
                                             </a>
                                         </li>
                                     </ul>
-
                                 {% endwith %}
                             </li>
 
                         </ul>
-
                     </nav>
                 </div>
                 <!-- menu end -->
                 <!-- action button -->
-                <a id="book-popup" class="knsl-btn"><img src="{% static "img/icons/bookmark.svg" %}" alt="icon">{% trans "Hoziroq band qiling" %}</a>
+                <a id="book-popup" class="knsl-btn"><img src="{% static "img/icons/bookmark.svg" %}"
+                                                         alt="icon">{% trans "Hoziroq band qiling" %}</a>
                 <!-- action button end -->
             </div>
             <!-- menu button -->
@@ -168,12 +164,11 @@
                 <div class="col-lg-12">
 
                     <div class="knsl-center knsl-title-frame">
-                        <h1 class="knsl-mb-30 knsl-h1-inner">The Ultimate Guide to Traveling <br>When You Have No Money
-                        </h1>
+                        <h1 class="knsl-mb-30 knsl-h1-inner">{{ blog.title }}</h1>
                         <ul class="knsl-breadcrumbs">
-                            <li><a href="home-1.html">Home</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><span>The Ultimate Guide...</span></li>
+                            <li><a href="/">{% trans "Asosiy" %}</a></li>
+                            <li><a href="{% url "blogs" %}">{% trans "Yangiliklar" %}</a></li>
+                            <li><span>{{ blog.title }}</span></li>
                         </ul>
                     </div>
 
@@ -188,135 +183,62 @@
             <div class="row justify-content-center">
 
                 <div class="col-lg-8">
-
-                    <img src="{% static "img/blog/2.jpg" %}" alt="cover" class="knsl-default-img knsl-mb-30">
+                    <img src="{{ blog.image.url }}" alt="cover" class="knsl-default-img knsl-mb-30">
 
                     <div class="knsl-room-features-lg knsl-mb-30">
                         <div class="knsl-feature">
-                            <div class="knsl-icon-frame knsl-icon-author"><img src="{% static "img/faces/2.jpg" %}"
-                                                                               alt="icon"></div>
-                            <span>Paul Trueman</span>
-                        </div>
-                        <div class="knsl-feature">
                             <div class="knsl-icon-frame"><img src="{% static "img/icons/time.svg" %}" alt="icon"></div>
-                            <span>12.08.21 23:13</span>
+                            <span>{{ blog.created_at }}</span>
                         </div>
                     </div>
 
                     <div class="knsl-blog-post knsl-mb-60">
-
-                        <p class="knsl-mb-40">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi soluta
-                            minima nemo, earum et minus iste amet molestias sequi eum dolore laudantium iusto, quia
-                            praesentium eius, est? Eligendi unde, ab cumque iure
-                            fugit, veritatis dolor fugiat ad ex! Vero qui et dignissimos necessitatibus, praesentium
-                            magni, accusamus vel doloribus dolores assumenda. Laboriosam fugiat labore error perferendis
-                            doloribus, illo qui quisquam alias saepe, sunt
-                            magni! Praesentium molestias facere, dolores sint obcaecati nisi ducimus quaerat sunt.
-                            Ratione maiores repellendus facere optio harum soluta, obcaecati et ipsam eos. Doloribus,
-                            fugiat.</p>
-
-                        <blockquote class="knsl-left knsl-mb-40">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate eveniet modi voluptatem
-                            ut nemo, porro debitis, recusandae saepe, aspernatur obcaecati cum excepturi similique sed
-                            ex praesentium distinctio quas assumenda et.
-                        </blockquote>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate amet natus dicta ipsum,
-                            aut autem sunt, tenetur sapiente et repudiandae id expedita recusandae vitae doloribus
-                            necessitatibus, accusamus sequi
-                            debitis reiciendis vel corporis cum fuga dolorem voluptatem. Dolores maxime, architecto
-                            quia?</p>
-                        <p class="knsl-mb-40">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-                            provident, distinctio ea!</p>
+                        <p class="knsl-mb-40">{{ blog.description }}</p>
 
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src="{% static "img/blog/3.jpg" %}" alt="cover"
-                                     class="knsl-default-img knsl-mb-40">
+                                <div class="knsl-default-img"
+                                     style="background-image: url('{{ blog.mini_image.url }}'); background-repeat: no-repeat; background-size: cover; background-position: center; height: 300px; border: solid 10px #FFFFFF; border-radius: 10px; margin-bottom: 40px;"></div>
                             </div>
+
                             <div class="col-lg-6">
-                                <img src="{% static "img/blog/4.jpg" %}" alt="cover"
-                                     class="knsl-default-img knsl-mb-40">
+                                <div class="knsl-default-img"
+                                     style="background-image: url('{{ blog.mini_image2.url }}'); background-repeat: no-repeat; background-size: cover; background-position: center; height: 300px; border: solid 10px #FFFFFF; border-radius: 10px; margin-bottom: 40px;"></div>
                             </div>
                         </div>
 
-                        <p>Consectetur adipisicing elit. Modi temporibus ratione rerum voluptates, iusto non quas, ab
-                            optio sequi sint nisi officiis facilis nihil facere id tempore laborum, voluptatum aut
-                            nostrum natus vel tenetur
-                            praesentium labore illum, reprehenderit. Omnis sunt autem, odit vero. Facilis accusamus
-                            totam quidem, repudiandae. Modi saepe, expedita itaque laborum dolore accusantium?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis quisquam nam consectetur
-                            voluptate fuga facere ad quis magni laboriosam blanditiis!</p>
-
+                        <p>{{ blog.text }}</p>
                     </div>
+
                     <!-- comments -->
                     <section class="knsl-mb-30">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="knsl-mb-40 knsl-scroll-animation">Comments</h3>
+                                <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Izohlar" %}</h3>
                             </div>
-                            <div class="col-lg-12">
+
+                            {% for comment in comments %}
+                            	<div class="col-lg-12">
 
                                 <div class="knsl-review-card knsl-scroll-animation">
                                     <div class="knsl-card-header">
                                         <div class="knsl-name-and-photo">
                                             <div class="knsl-avatar-frame">
-                                                <img src="{% static "img/faces/3.jpg" %}" alt="Avatar">
+                                                <img src="{% static "img/faces/user.png" %}" alt="Avatar">
                                             </div>
                                             <div>
-                                                <h5>Sofia Oldman</h5>
-                                                <span>14.07.2021</span>
+                                                <h5>{{ comment.name }}</h5>
+                                                <span>{{ comment.created_at }}</span>
                                             </div>
                                         </div>
-                                        <ul class="knsl-stars">
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul>
+
                                     </div>
-                                    <blockquote>
-                                        Dequi folores dolor sit amet, consectetur adipisicing elit. Nesciunt illo,
-                                        delectus totam! Delectus illo magnam voluptatem a tempora id vitae dolor, quis
-                                        natus iusto molestiae ab nam error vero possimus ullam facilis porro
-                                        veritatis.
-                                    </blockquote>
+                                    <blockquote>{{ comment.message }}</blockquote>
 
                                 </div>
 
                             </div>
-                            <div class="col-lg-12">
-
-                                <div class="knsl-review-card knsl-scroll-animation">
-                                    <div class="knsl-card-header">
-                                        <div class="knsl-name-and-photo">
-                                            <div class="knsl-avatar-frame">
-                                                <img src="{% static "img/faces/2.jpg" %}" alt="Avatar">
-                                            </div>
-                                            <div>
-                                                <h5>Emma Newman</h5>
-                                                <span>14.07.2021</span>
-                                            </div>
-                                        </div>
-                                        <ul class="knsl-stars">
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li class="knsl-empty"><i class="fas fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                    <blockquote>
-                                        Dequi folores dolor sit amet, consectetur adipisicing elit. Nesciunt illo,
-                                        delectus totam! Delectus illo magnam voluptatem a tempora id vitae dolor, quis
-                                        natus iusto molestiae ab nam error vero possimus ullam facilis porro
-                                        veritatis.
-                                    </blockquote>
-
-                                </div>
-
-                            </div>
+                            {% endfor %}
                         </div>
                     </section>
                     <!-- comments end -->
@@ -324,30 +246,31 @@
                     <section>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="knsl-mb-40 knsl-scroll-animation">Leave a comment</h3>
+                                <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Izoh qoldirish" %}</h3>
                             </div>
                             <div class="col-lg-12">
-                                <form class="knsl-scroll-animation">
+                                <form class="knsl-scroll-animation" method="post" action="{% url "blog_details" blog.id %}">
+                                    {% csrf_token %}
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <input type="text" placeholder="Name">
+                                            <input type="text" name="name" placeholder="{% trans "Ismi" %}">
                                         </div>
                                         <div class="col-lg-6">
-                                            <input type="email" placeholder="Email">
+                                            <input type="email" name="email" placeholder="{% trans "Elektron pochta" %}">
                                         </div>
                                         <div class="col-lg-12">
-                                            <textarea name="name" rows="8" placeholder="Text"></textarea>
+                                            <textarea name="message" rows="8" placeholder="{% trans "Xabar" %}"></textarea>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="knsl-form-submit-frame">
                                                 <!-- temporary button to show the popup -->
-                                                <a class="knsl-btn" data-fancybox href="#knsl-success">Send</a>
+                                                <button type="submit" class="knsl-btn">{% trans "Yuborish" %}</button>
                                                 <!-- <button class="knsl-btn">Send</button> -->
-                                                <div class="knsl-text-sm">*We promise not to disclose your personal
-                                                    information to third parties.
-                                                </div>
+                                                <div class="knsl-text-sm">
+                                                    *{% trans "Shaxsiy ma'lumotlaringizni uchinchi shaxslarga oshkor qilmaslikka va'da beramiz." %}</div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </form>
                             </div>
@@ -369,211 +292,43 @@
                 <div class="col-lg-12">
 
                     <div class="knsl-center knsl-title-frame knsl-scroll-animation knsl-mb-100">
-                        <h2 class="knsl-mb-20">Similar Publications</h2>
-                        <p class="knsl-mb-30">Consectetur adipisicing elit. Nihil, illum voluptate eveniet ex fugit ea
-                            delectus, sed voluptatem. Laborum accusantium libero commodi id officiis itaque esse
-                            adipisci, necessitatibus asperiores, illo odio.</p>
-                        <a href="blog.html" class="knsl-btn knsl-btn-md">All publications</a>
+                        <h2 class="knsl-mb-20">{% trans "Mashhur yangiliklar" %}</h2>
+                        <p class="knsl-mb-30">{% trans "Status Hotel mehmonxonasi atrofidagi so'ngi shov-shuvlar sizga qiziqmi ? Unda mashhur yangiliklarimizni kuzatib boring." %}</p>
+                        <a href="{% url 'blogs' %}" class="knsl-btn knsl-btn-md">{% trans "Hamma yangiliklar" %}</a>
                     </div>
 
                 </div>
                 <div class="col-lg-12">
                     <div class="swiper-container knsl-uni-slider">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                            {% for blog in blogs %}
+                                <div class="swiper-slide">
 
-                                <!-- blog card -->
-                                <div class="knsl-blog-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="blog_details.html"><img src="{% static "img/blog/1.jpg" %}"
-                                                                         alt="cover"></a>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame knsl-icon-author"><img
-                                                        src="{% static "img/faces/1.jpg" %}" alt="icon"></div>
-                                                <span>Paul Trueman</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static "img/icons/time.svg" %}" alt="icon"></div>
-                                                <span>12.08.21 23:13</span>
-                                            </div>
+                                    <!-- blog card -->
+                                    <div class="knsl-blog-card knsl-scroll-animation">
+                                        <div class="knsl-cover-frame">
+                                            <a href="{% url 'blog_details'  blog.id %}"><img src="{{ blog.image.url }}"
+                                                                                             alt="cover"></a>
                                         </div>
-                                        <a href="blog_details.html">
-                                            <h4 class="knsl-mb-20">18 Easy Steps for Planning Your Next Trip</h4>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm">Libero non aut dignissimos optio hic
-                                            laudantium.
+                                        <div class="knsl-description-frame">
+                                            <div class="knsl-room-features">
+
+                                                <div class="knsl-feature">
+                                                    <div class="knsl-icon-frame"><img
+                                                            src="{% static "img/icons/time.svg" %}" alt="icon"></div>
+                                                    <span>{{ blog.created_at }}</span>
+                                                </div>
+                                            </div>
+                                            <a href="{% url 'blog_details'  blog.id %}">
+                                                <h4 class="knsl-mb-20">{{ blog.title }}</h4>
+                                            </a>
+                                            <div class="knsl-text-light knsl-text-sm">{{ blog.description }}</div>
                                         </div>
                                     </div>
+                                    <!-- blog card end -->
+
                                 </div>
-                                <!-- blog card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- blog card -->
-                                <div class="knsl-blog-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="blog_details.html"><img src="{% static "img/blog/4.jpg" %}"
-                                                                         alt="cover"></a>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame knsl-icon-author"><img
-                                                        src="{% static "img/faces/1.jpg" %}" alt="icon"></div>
-                                                <span>Paul Trueman</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static "img/icons/time.svg" %}" alt="icon"></div>
-                                                <span>12.08.21 23:13</span>
-                                            </div>
-                                        </div>
-                                        <a href="blog_details.html">
-                                            <h4 class="knsl-mb-20">The Best Travel Insurance Companies for Seniors</h4>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm">Libero non aut dignissimos optio hic
-                                            laudantium.
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- blog card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- blog card -->
-                                <div class="knsl-blog-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="blog_details.html"><img src="{% static "img/blog/3.jpg" %}"
-                                                                         alt="cover"></a>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame knsl-icon-author"><img
-                                                        src="{% static "img/faces/1.jpg" %}" alt="icon"></div>
-                                                <span>Paul Trueman</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static "img/icons/time.svg" %}" alt="icon"></div>
-                                                <span>12.08.21 23:13</span>
-                                            </div>
-                                        </div>
-                                        <a href="blog_details.html">
-                                            <h4 class="knsl-mb-20">The Ultimate Guide to Traveling When You Have No
-                                                Money</h4>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm">Libero non aut dignissimos optio hic
-                                            laudantium.
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- blog card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- blog card -->
-                                <div class="knsl-blog-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="blog_details.html"><img src="{% static "img/blog/2.jpg" %}"
-                                                                         alt="cover"></a>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame knsl-icon-author"><img
-                                                        src="{% static "img/faces/1.jpg" %}" alt="icon"></div>
-                                                <span>Paul Trueman</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static "img/icons/time.svg" %}" alt="icon"></div>
-                                                <span>12.08.21 23:13</span>
-                                            </div>
-                                        </div>
-                                        <a href="blog_details.html">
-                                            <h4 class="knsl-mb-20">18 Easy Steps for Planning Your Next Trip</h4>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm">Libero non aut dignissimos optio hic
-                                            laudantium.
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- blog card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- blog card -->
-                                <div class="knsl-blog-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="blog_details.html"><img src="{% static "img/blog/5.jpg" %}"
-                                                                         alt="cover"></a>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame knsl-icon-author"><img
-                                                        src="{% static "img/faces/1.jpg" %}" alt="icon"></div>
-                                                <span>Paul Trueman</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static "img/icons/time.svg" %}" alt="icon"></div>
-                                                <span>12.08.21 23:13</span>
-                                            </div>
-                                        </div>
-                                        <a href="blog_details.html">
-                                            <h4 class="knsl-mb-20">The Best Travel Insurance Companies for Seniors</h4>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm">Libero non aut dignissimos optio hic
-                                            laudantium.
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- blog card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- blog card -->
-                                <div class="knsl-blog-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="blog_details.html"><img src="{% static "img/blog/6.jpg" %}"
-                                                                         alt="cover"></a>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame knsl-icon-author"><img
-                                                        src="{% static "img/faces/1.jpg" %}" alt="icon"></div>
-                                                <span>Paul Trueman</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static "img/icons/time.svg" %}" alt="icon"></div>
-                                                <span>12.08.21 23:13</span>
-                                            </div>
-                                        </div>
-                                        <a href="blog_details.html">
-                                            <h4 class="knsl-mb-20">The Ultimate Guide to Traveling When You Have No
-                                                Money</h4>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm">Libero non aut dignissimos optio hic
-                                            laudantium.
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- blog card end -->
-
-                            </div>
+                            {% endfor %}
                         </div>
 
                         <!-- slider navigation -->
@@ -594,70 +349,67 @@
     <!-- blog end -->
 
     <!-- footer -->
-    <footer>
+        <footer>
         <div class="knsl-footer">
             <div class="container knsl-p-100-100">
                 <div class="row">
                     <div class="col-md-6 col-lg-4">
-                        <img class="knsl-footer-logo" src="{% static "img/logo.png" %}" alt="Kinsley">
-                        <div class="knsl-footer-about">Sequi dolores ratione eos eveniet provident soluta. Omnis
-                            nesciunt sit eos at, eius voluptatum rem corporis. Doloremque labore assumenda
-                            explicabo velit illo, soluta rem, inventore hic.
-                        </div>
+                        <img class="knsl-footer-logo" src="{% static  "img/logo-w.png" %}" alt="Kinsley"
+                             style="height: 44px; width: auto">
+                        <div class="knsl-footer-about">{% trans "Shahar manzaralaridan sokin plyajlargacha, o'zingizning mukammal boshpanangizni toping. Sayohatingiz qayerga olib bormasin, uyingizni uydan uzoqda toping.Sizni 'Status Hotel' mehmonxonasida kutib qolamiz!" %}</div>
                         <div class="knsl-footer-social">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                              {% for main_social in main_socials %}
+                              	  <a href="{{ main_social.link }}" target="_blank"><img style="width: 24px" src="{{ main_social.image.url }}" alt=""></a>
+                              {% endfor %}
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-2">
-                        <h4>Menu</h4>
+                        <h4>{% trans "Menyu" %}</h4>
                         <ul class="knsl-footer-menu">
-                            <li><a href="#.">Home</a></li>
-                            <li><a href="#.">About us</a></li>
-                            <li><a href="#.">Rooms</a></li>
-                            <li><a href="#.">Our services</a></li>
-                            <li><a href="#.">Contact info</a></li>
+                            <li><a href="/">{% trans "Asosiy" %}</a></li>
+                            <li><a href="{% url 'about' %}">{% trans "Haqida" %}</a></li>
+                            <li><a href="{% url 'rooms' %}">{% trans "Xonalar" %}</a></li>
+                            <li><a href="{% url 'blogs' %}">{% trans "Yangiliklar" %}</a></li>
+                            <li><a href="{% url 'contact' %}">{% trans "Aloqa" %}</a></li>
                         </ul>
                     </div>
                     <div class="col-md-6 col-lg-3">
-                        <h4>Meet Kinsley</h4>
+                        <h4>{% trans "Status bilan tanishing" %}</h4>
                         <ul class="knsl-footer-menu">
-                            <li><a href="#.">Terms and conditions</a></li>
-                            <li><a href="#.">Privacy policy</a></li>
-                            <li><a href="#.">Help center</a></li>
-                            <li><a href="#.">Work with us</a></li>
-                            <li><a href="#.">Sitemap</a></li>
+                            <li><a href="#.">{% trans "Foydalanish shartlari" %}</a></li>
+                            <li><a href="#.">{% trans "Maxfiylik siyosati" %}</a></li>
+                            <li><a href="#.">{% trans "Yordam markazi" %}</a></li>
+                            <li><a href="#.">{% trans "Biz bilan ishlang" %}</a></li>
+                            <li><a href="#.">{% trans "Sayt xaritasi" %}</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h4>Instagram</h4>
-                        <div class="footer-insta">
-                            <a href="#"><img src="{% static "img/about/1.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static "img/about/2.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static "img/about/3.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static "img/about/4.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static "img/about/5.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static "img/about/6.jpg" %}" alt="Image"></a>
+                    {% if galleries != none %}
+                        <div class="col-md-6 col-lg-3">
+                            <h4>{% trans "Galereya" %}</h4>
+                            <div class="footer-insta">
+                                {% for gallery in galleries %}
+                                    <a href="#"><img src="{{ gallery.image.url }}" alt="Image"></a>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
+
+
                 </div>
             </div>
             <div class="knsl-copyright">
                 <div class="container">
                     <div class="copy-text">
-                        <div>&copy; mid 2021 Kinsley. All Rights Reserved.</div>
+                        <div>{% trans "©Mualliflik huquqi 2024. Barcha huquqlar himoyalangan." %}</div>
                     </div>
                     <div class="copy-menu">
-                        <div>Design by: <a href="https://themeforest.net/user/millerdigitaldesign/portfolio">Nazar
-                            Miller</a></div>
+                        <div>{% trans "Muallif" %} : <a href="https://growyourbusiness.uz/">Webify Agency</a></div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+
     <!-- footer end -->
 
     <!-- popup -->

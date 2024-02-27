@@ -87,13 +87,14 @@
                                 <a href="{% url 'contact' %}">{% trans 'Aloqa' %}</a>
                             </li>
 
-                            <li class="menu-item-has-children current-item">
-                                <a href="#">{% trans 'Sahifalar' %}</a>
-                                <ul>
-                                    <li><a href="{% url 'blogs' %}">{% trans 'Yangiliklar' %}</a></li>
-                                    <li><a href="{% url 'gallery' %}">{% trans 'Galereya' %}</a></li>
-                                    <li><a href="{% url 'faq' %}">{% trans 'Savollar' %}</a></li>
-                                </ul>
+                            <li class="menu-item-has-children">
+                                <a href="{% url "blogs" %}">{% trans 'Yangiliklar' %}</a>
+
+                            </li>
+
+
+                            <li class="menu-item-has-children">
+                                <a href="{% url 'gallery' %}">{% trans 'Galereya' %}</a>
                             </li>
 
                             <li class="menu-item-has-children">
@@ -104,7 +105,7 @@
                                         </a>
                                     {% elif current_language == "en" %}
                                         <a href="#">
-                                            <img style="width: 40px" src="{% static 'img/united-kingdom (1).png' %}"
+                                            <img style="width: 40px" src="{% static 'img/united-kingdom11.png' %}"
                                                  alt="">
                                         </a>
                                     {% elif current_language == "ru" %}
@@ -112,41 +113,33 @@
                                             <img style="width: 40px" src="{% static 'img/russia.png' %}" alt="">
                                         </a>
                                     {% endif %}
-
-
-
-
-
-
                                     <ul>
                                         <li>
                                             <a href="{% url 'set-language' 'uz' %}">
                                                 <img style="width: 40px" src="{% static 'img/uz.png' %}" alt="">
-                                                {{ _('Uzbek') }}
+                                                Uzbek
                                             </a>
                                         </li>
 
                                         <li>
                                             <a href="{% url 'set-language' 'en' %}">
-                                                <img style="width: 40px" src="{% static 'img/united-kingdom (1).png' %}"
+                                                <img style="width: 40px" src="{% static 'img/united-kingdom11.png' %}"
                                                      alt="">
-                                                {{ _('English') }}
+                                                English
                                             </a>
                                         </li>
 
                                         <li>
                                             <a href="{% url 'set-language' 'ru' %}">
                                                 <img style="width: 40px" src="{% static 'img/russia.png' %}" alt="">
-                                                {{ _('Russian') }}
+                                                Russian
                                             </a>
                                         </li>
                                     </ul>
-
                                 {% endwith %}
                             </li>
 
                         </ul>
-
                     </nav>
                 </div>
                 <!-- menu end -->
@@ -172,12 +165,11 @@
                 <div class="col-lg-12">
 
                     <div class="knsl-center knsl-title-frame">
-                        <h1 class="knsl-mb-20 knsl-h1-inner">Choose your Room</h1>
-                        <p class="knsl-mb-30">Laborum accusantium libero commodi. Voluptate consequatur itaque expedita
-                            accusamus impedit perspiciatis asperiores necessitatibus assumenda magnam ipsa.</p>
+                        <h1 class="knsl-mb-20 knsl-h1-inner">{% trans "Xonangizni tanlang" %}</h1>
+                        <p class="knsl-mb-30">{% trans "Bizning qulay va zamonaviy turar joylarimizdan tanlang.Mehmonxonamizda ehtiyojlaringiz va byudjetingizga mos keladigan xonani toping." %}</p>
                         <ul class="knsl-breadcrumbs">
-                            <li><a href="home-1.html">Home</a></li>
-                            <li><span>Rooms</span></li>
+                            <li><a href="/">{% trans "Asosiy" %}</a></li>
+                            <li><span>{% trans "Xonalar" %}</span></li>
                         </ul>
                     </div>
 
@@ -193,459 +185,74 @@
         <div class="container">
 
             <div class="knsl-filter knsl-mb-60">
-                <a href="#" data-filter="*" class="knsl-work-category knsl-current">All Rooms</a>
-                <a href="#" data-filter=".economy" class="knsl-work-category">Economy</a>
-                <a href="#" data-filter=".standart" class="knsl-work-category">Standart</a>
-                <a href="#" data-filter=".deluxe" class="knsl-work-category">Deluxe</a>
+                <a href="#" data-filter="*" class="knsl-work-category knsl-current">{% trans "Hamma xonalar" %}</a>
+                {% for category in categories %}
+                    <a href="#" data-filter=".{{ category.id }}" class="knsl-work-category">{{ category.title }}</a>
+                {% endfor %}
             </div>
 
             <div class="knsl-masonry-grid knsl-3-col">
 
                 <div class="knsl-grid-sizer"></div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 deluxe">
+                {% for room in rooms %}
 
-                    <!-- room card -->
-                    <div class="knsl-room-card">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/1.jpg" %}" alt="cover"></a>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>4 Guests</span>
+                    <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 {{ room.category.id }}">
+
+                        <!-- room card -->
+                        <div class="knsl-room-card">
+                            <div class="knsl-cover-frame">
+                                {% for room_image in room.room_images.all %}
+                                    <a href="{% url "room_details"  room.id %}"><img src="{{ room_image.image.url }}"
+                                                                                     alt="cover"></a>
+                                {% endfor %}
+                            </div>
+                            <div class="knsl-description-frame">
+                                <div class="knsl-room-features">
+                                    <div class="knsl-feature">
+                                        <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
+                                                                          alt="icon"></div>
+                                        <span>{{ room.person }} {% trans "Odamlar soni" %}</span>
+                                    </div>
+                                    <div class="knsl-feature">
+                                        <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
+                                                                          alt="icon"></div>
+                                        <span>{{ room.size }} Ft²</span>
+                                    </div>
                                 </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>95 Ft²</span>
+                                <a href="{% url "room_details"  room.id %}">
+                                    <h3 class="knsl-mb-20">{{ room.title }}</h3>
+                                </a>
+                                <div class="knsl-text-light knsl-text-sm knsl-mb-20">{{ room.description|slice:":70" }}
+                                    ....
+                                </div>
+                                <div class="knsl-card-bottom">
+                                    <div class="knsl-price">{{ room.price }}<span>/so'm</span></div>
+                                    <a href="{% url "room_details"  room.id %}" class="knsl-btn"><img
+                                            src="{% static  "img/icons/bookmark.svg" %}"
+                                            alt="icon">{% trans "Ko'proq" %}</a>
                                 </div>
                             </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Deluxe room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$175.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
                         </div>
+                        <!-- room card end -->
+
                     </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 economy">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/2.jpg" %}" alt="cover"></a>
-                            <div class="knsl-badge">Popular</div>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>2 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>50 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Standart Room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$75.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 standart">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/3.jpg" %}" alt="cover"></a>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>4 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>95 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Deluxe room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$175.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 deluxe">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card knsl-scroll-animation">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/4.jpg" %}" alt="cover"></a>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>1 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>35 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Economy room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$55.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 economy">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card knsl-scroll-animation">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/1.jpg" %}" alt="cover"></a>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>1 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>35 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Economy room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$55.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 standart">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card knsl-scroll-animation">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/5.jpg" %}" alt="cover"></a>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>4 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>95 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Deluxe room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$175.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 deluxe">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card knsl-scroll-animation">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/6.jpg" %}" alt="cover"></a>
-                            <div class="knsl-badge">Popular</div>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>2 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>50 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Standart Room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$75.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 economy">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card knsl-scroll-animation">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/7.jpg" %}" alt="cover"></a>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>1 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>35 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Economy room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$55.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 standart">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card knsl-scroll-animation">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/8.jpg" %}" alt="cover"></a>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>4 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>95 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Deluxe room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$175.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 deluxe">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/1.jpg" %}" alt="cover"></a>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>4 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>95 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Deluxe room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$175.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 economy">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/2.jpg" %}" alt="cover"></a>
-                            <div class="knsl-badge">Popular</div>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>2 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>50 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Standart Room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$75.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
-                <div class="knsl-masonry-grid-item knsl-masonry-grid-item-33 standart">
-
-                    <!-- room card -->
-                    <div class="knsl-room-card">
-                        <div class="knsl-cover-frame">
-                            <a href="room_details.html"><img src="{% static  "img/rooms/3.jpg" %}" alt="cover"></a>
-                        </div>
-                        <div class="knsl-description-frame">
-                            <div class="knsl-room-features">
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/bed.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>4 Guests</span>
-                                </div>
-                                <div class="knsl-feature">
-                                    <div class="knsl-icon-frame"><img src="{% static  "img/icons/square.svg" %}"
-                                                                      alt="icon"></div>
-                                    <span>95 Ft²</span>
-                                </div>
-                            </div>
-                            <a href="room_details.html">
-                                <h3 class="knsl-mb-20">Deluxe room</h3>
-                            </a>
-                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos optio hic
-                                laudantium ex maiores enim et consequatur corrupti omnis.
-                            </div>
-                            <div class="knsl-card-bottom">
-                                <div class="knsl-price">$175.0<span>/night</span></div>
-                                <a href="room_details.html" class="knsl-btn"><img
-                                        src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- room card end -->
-
-                </div>
+                {% endfor %}
             </div>
             <ul class="knsl-pagination">
-                <li class="knsl-active"><a href="#.">1</a></li>
-                <li><a href="#.">2</a></li>
-                <li><a href="#.">3</a></li>
-                <li><a href="#.">...</a></li>
-                <li><a href="#.">32</a></li>
+                {% for i in rooms.paginator.page_range %}
+                    {% if rooms.number == i %}
+                        <li class="knsl-active"><a href="#.">{{ i }}</a></li>
+                    {% elif i == rooms.paginator.page_range.0 or i == rooms.paginator.page_range.1 or i == rooms.paginator.page_range.2 or i == rooms.paginator.page_range.3 or i == rooms.paginator.page_range.4 %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% elif i == rooms.paginator.page_range.5 %}
+                        <li><a href="#.">...</a></li>
+                    {% elif i == rooms.paginator.page_range|last %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
             </ul>
+
+
         </div>
     </section>
     <!-- rooms end -->
@@ -658,322 +265,59 @@
                 <div class="col-lg-12">
 
                     <div class="knsl-center knsl-title-frame knsl-scroll-animation knsl-mb-100">
-                        <h2 class="knsl-mb-20">Popular Rooms</h2>
-                        <p class="knsl-mb-30">Consectetur adipisicing elit. Nihil, illum voluptate eveniet ex fugit ea
-                            delectus, sed voluptatem. Laborum accusantium libero commodi id officiis itaque esse
-                            adipisci, necessitatibus asperiores, illo odio.</p>
-                        <a href="rooms-2.html" class="knsl-btn knsl-btn-md">All rooms</a>
+                        <h2 class="knsl-mb-20">{% trans "Mashhur xonalar" %}</h2>
+                        <p class="knsl-mb-30">{% trans "Sizga o'xshagan sayohatchilar doimiy ravishda tanlagan xonalar bilan tanishing.Unutilmas turar joy yaratadigan xonalarni o'rganing." %}</p>
+                        <a href="{% trans "rooms" %}" class="knsl-btn knsl-btn-md">{% trans "Hamma xonalar" %}</a>
                     </div>
 
                 </div>
                 <div class="col-lg-12">
                     <div class="swiper-container knsl-uni-slider">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                            {% for room in rooms %}
+                                <div class="swiper-slide">
 
-                                <!-- room card -->
-                                <div class="knsl-room-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="room_details.html"><img src="{% static  "img/rooms/1.jpg" %}"
-                                                                         alt="cover"></a>
-                                        <div class="knsl-badge">Popular</div>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/bed.svg" %}" alt="icon"></div>
-                                                <span>4 Guests</span>
+                                    <!-- room card -->
+                                    <div class="knsl-room-card knsl-scroll-animation">
+                                        <div class="knsl-cover-frame">
+                                            {% for room_image in room.room_images.all %}
+                                                <a href="{% url "room_details"  room.id %}"><img
+                                                        src="{{ room_image.image.url }}"
+                                                        alt="cover"></a>
+                                            {% endfor %}
+                                            <div class="knsl-badge">{% trans "Mashhur" %}</div>
+                                        </div>
+                                        <div class="knsl-description-frame">
+                                            <div class="knsl-room-features">
+                                                <div class="knsl-feature">
+                                                    <div class="knsl-icon-frame"><img
+                                                            src="{% static  "img/icons/bed.svg" %}" alt="icon"></div>
+                                                    <span>{{ room.person }} {% trans "Odamlar soni" %}</span>
+                                                </div>
+                                                <div class="knsl-feature">
+                                                    <div class="knsl-icon-frame"><img
+                                                            src="{% static  "img/icons/square.svg" %}" alt="icon"></div>
+                                                    <span>{{ room.size }} Ft²</span>
+                                                </div>
                                             </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/square.svg" %}" alt="icon"></div>
-                                                <span>95 Ft²</span>
+                                            <a href="{% url "room_details"  room.id %}">
+                                                <h3 class="knsl-mb-20">{{ room.title }}</h3>
+                                            </a>
+                                            <div class="knsl-text-light knsl-text-sm knsl-mb-20">{{ room.description|slice:":75" }}
+                                                ....
+                                            </div>
+                                            <div class="knsl-card-bottom">
+                                                <div class="knsl-price">{{ room.price }}<span>/so'm</span></div>
+                                                <a href="{% url "room_details"  room.id %}" class="knsl-btn"><img
+                                                        src="{% static  "img/icons/bookmark.svg" %}"
+                                                        alt="icon">{% trans "Ko'proq" %}</a>
                                             </div>
                                         </div>
-                                        <a href="room_details.html">
-                                            <h3 class="knsl-mb-20">Deluxe room</h3>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos
-                                            optio hic laudantium ex maiores enim et consequatur corrupti omnis.
-                                        </div>
-                                        <div class="knsl-card-bottom">
-                                            <div class="knsl-price">$175.0<span>/night</span></div>
-                                            <a href="room_details.html" class="knsl-btn"><img
-                                                    src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                                        </div>
                                     </div>
+                                    <!-- room card end -->
+
                                 </div>
-                                <!-- room card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- room card -->
-                                <div class="knsl-room-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="room_details.html"><img src="{% static  "img/rooms/2.jpg" %}"
-                                                                         alt="cover"></a>
-                                        <div class="knsl-badge">Popular</div>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/bed.svg" %}" alt="icon"></div>
-                                                <span>2 Guests</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/square.svg" %}" alt="icon"></div>
-                                                <span>50 Ft²</span>
-                                            </div>
-                                        </div>
-                                        <a href="room_details.html">
-                                            <h3 class="knsl-mb-20">Standart Room</h3>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos
-                                            optio hic laudantium ex maiores enim et consequatur corrupti omnis.
-                                        </div>
-                                        <div class="knsl-card-bottom">
-                                            <div class="knsl-price">$75.0<span>/night</span></div>
-                                            <a href="room_details.html" class="knsl-btn"><img
-                                                    src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- room card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- room card -->
-                                <div class="knsl-room-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="room_details.html"><img src="{% static  "img/rooms/3.jpg" %}"
-                                                                         alt="cover"></a>
-                                        <div class="knsl-badge">Popular</div>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/bed.svg" %}" alt="icon"></div>
-                                                <span>4 Guests</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/square.svg" %}" alt="icon"></div>
-                                                <span>95 Ft²</span>
-                                            </div>
-                                        </div>
-                                        <a href="room_details.html">
-                                            <h3 class="knsl-mb-20">Deluxe room</h3>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos
-                                            optio hic laudantium ex maiores enim et consequatur corrupti omnis.
-                                        </div>
-                                        <div class="knsl-card-bottom">
-                                            <div class="knsl-price">$175.0<span>/night</span></div>
-                                            <a href="room_details.html" class="knsl-btn"><img
-                                                    src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- room card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- room card -->
-                                <div class="knsl-room-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="room_details.html"><img src="{% static  "img/rooms/4.jpg" %}"
-                                                                         alt="cover"></a>
-                                        <div class="knsl-badge">Popular</div>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/bed.svg" %}" alt="icon"></div>
-                                                <span>1 Guests</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/square.svg" %}" alt="icon"></div>
-                                                <span>35 Ft²</span>
-                                            </div>
-                                        </div>
-                                        <a href="room_details.html">
-                                            <h3 class="knsl-mb-20">Economy room</h3>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos
-                                            optio hic laudantium ex maiores enim et consequatur corrupti omnis.
-                                        </div>
-                                        <div class="knsl-card-bottom">
-                                            <div class="knsl-price">$55.0<span>/night</span></div>
-                                            <a href="room_details.html" class="knsl-btn"><img
-                                                    src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- room card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- room card -->
-                                <div class="knsl-room-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="room_details.html"><img src="{% static  "img/rooms/5.jpg" %}"
-                                                                         alt="cover"></a>
-                                        <div class="knsl-badge">Popular</div>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/bed.svg" %}" alt="icon"></div>
-                                                <span>4 Guests</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/square.svg" %}" alt="icon"></div>
-                                                <span>95 Ft²</span>
-                                            </div>
-                                        </div>
-                                        <a href="room_details.html">
-                                            <h3 class="knsl-mb-20">Deluxe room</h3>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos
-                                            optio hic laudantium ex maiores enim et consequatur corrupti omnis.
-                                        </div>
-                                        <div class="knsl-card-bottom">
-                                            <div class="knsl-price">$175.0<span>/night</span></div>
-                                            <a href="room_details.html" class="knsl-btn"><img
-                                                    src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- room card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- room card -->
-                                <div class="knsl-room-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="room_details.html"><img src="{% static  "img/rooms/6.jpg" %}"
-                                                                         alt="cover"></a>
-                                        <div class="knsl-badge">Popular</div>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/bed.svg" %}" alt="icon"></div>
-                                                <span>2 Guests</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/square.svg" %}" alt="icon"></div>
-                                                <span>50 Ft²</span>
-                                            </div>
-                                        </div>
-                                        <a href="room_details.html">
-                                            <h3 class="knsl-mb-20">Standart Room</h3>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos
-                                            optio hic laudantium ex maiores enim et consequatur corrupti omnis.
-                                        </div>
-                                        <div class="knsl-card-bottom">
-                                            <div class="knsl-price">$75.0<span>/night</span></div>
-                                            <a href="room_details.html" class="knsl-btn"><img
-                                                    src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- room card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- room card -->
-                                <div class="knsl-room-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="room_details.html"><img src="{% static  "img/rooms/7.jpg" %}"
-                                                                         alt="cover"></a>
-                                        <div class="knsl-badge">Popular</div>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/bed.svg" %}" alt="icon"></div>
-                                                <span>1 Guests</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/square.svg" %}" alt="icon"></div>
-                                                <span>35 Ft²</span>
-                                            </div>
-                                        </div>
-                                        <a href="room_details.html">
-                                            <h3 class="knsl-mb-20">Economy room</h3>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos
-                                            optio hic laudantium ex maiores enim et consequatur corrupti omnis.
-                                        </div>
-                                        <div class="knsl-card-bottom">
-                                            <div class="knsl-price">$55.0<span>/night</span></div>
-                                            <a href="room_details.html" class="knsl-btn"><img
-                                                    src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- room card end -->
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <!-- room card -->
-                                <div class="knsl-room-card knsl-scroll-animation">
-                                    <div class="knsl-cover-frame">
-                                        <a href="room_details.html"><img src="{% static  "img/rooms/8.jpg" %}"
-                                                                         alt="cover"></a>
-                                        <div class="knsl-badge">Popular</div>
-                                    </div>
-                                    <div class="knsl-description-frame">
-                                        <div class="knsl-room-features">
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/bed.svg" %}" alt="icon"></div>
-                                                <span>4 Guests</span>
-                                            </div>
-                                            <div class="knsl-feature">
-                                                <div class="knsl-icon-frame"><img
-                                                        src="{% static  "img/icons/square.svg" %}" alt="icon"></div>
-                                                <span>95 Ft²</span>
-                                            </div>
-                                        </div>
-                                        <a href="room_details.html">
-                                            <h3 class="knsl-mb-20">Deluxe room</h3>
-                                        </a>
-                                        <div class="knsl-text-light knsl-text-sm knsl-mb-20">Libero non aut dignissimos
-                                            optio hic laudantium ex maiores enim et consequatur corrupti omnis.
-                                        </div>
-                                        <div class="knsl-card-bottom">
-                                            <div class="knsl-price">$175.0<span>/night</span></div>
-                                            <a href="room_details.html" class="knsl-btn"><img
-                                                    src="{% static  "img/icons/bookmark.svg" %}" alt="icon">Book now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- room card end -->
-
-                            </div>
+                            {% endfor %}
                         </div>
 
                         <!-- slider navigation -->
@@ -994,141 +338,56 @@
     <!-- rooms end -->
 
     <!-- testimonials -->
-    <section class="knsl-p-100-80" style="background-color: #ECFAFB">
-        <img src="{% static  "img/palm.svg" %}" class="knsl-deco-left" alt="palm">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
+    {% if reviews %}
+        <section class="knsl-p-100-80" style="background-color: #ECFAFB">
+            <img src="{% static  "img/palm.svg" %}" class="knsl-deco-left" alt="palm">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
 
-                    <div class="knsl-center knsl-title-frame knsl-scroll-animation knsl-mb-80">
-                        <h2 class="knsl-mb-20">Feedback from our Guests</h2>
-                        <p>Consectetur adipisicing elit. Nihil, illum voluptate eveniet ex fugit ea delectus, sed
-                            voluptatem. Laborum accusantium libero commodi id officiis itaque esse adipisci,
-                            necessitatibus asperiores, illo odio.</p>
+                        <div class="knsl-center knsl-title-frame knsl-scroll-animation knsl-mb-80">
+                            <h2 class="knsl-mb-20">{% trans "Mehmonlarimizdan fikr-mulohazalar" %}</h2>
+                            <p>{% trans "Mehmonxonamizda biz mehmonlarimizga ajoyib tajriba taqdim etishga intilamiz. Biz sizning fikr-mulohazalaringizni qadrlaymiz va fikringizni baham ko'rish uchun vaqt ajratganingiz uchun minnatdormiz." %}</p>
+                        </div>
+
                     </div>
+                    <div class="col-lg-6">
 
-                </div>
-                <div class="col-lg-6">
+                        <!-- slider -->
+                        <div class="swiper-slider knsl-testimonials-slider knsl-scroll-animation">
+                            <div class="swiper-wrapper">
+                                {% for review in reviews %}
+                                    <div class="swiper-slide">
 
-                    <!-- slider -->
-                    <div class="swiper-slider knsl-testimonials-slider knsl-scroll-animation">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                                        <div class="knsl-testimonial-card">
+                                            <div class="knsl-avatar-frame">
+                                                <img src="{% static  "img/faces/user.png" %}" alt="Avatar">
+                                            </div>
+                                            <div class="knsl-name-and-text">
+                                                <h3 class="knsl-mb-10">{{ review.name }}</h3>
+                                                <div>{{ review.country }}</div>
+                                                <blockquote>
 
-                                <div class="knsl-testimonial-card">
-                                    <div class="knsl-avatar-frame">
-                                        <img src="{% static  "img/faces/1.jpg" %}" alt="Avatar">
+                                                    {{ review.message }}
+                                                </blockquote>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div class="knsl-name-and-text">
-                                        <h3 class="knsl-mb-10">Oscar Newman</h3>
-                                        <div>From Poland</div>
-                                        <blockquote>
-                                            <ul class="knsl-stars">
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li class="knsl-empty"><i class="fas fa-star"></i></li>
-                                            </ul>
-                                            Dequi folores dolor sit amet, consectetur adipisicing elit. Nesciunt illo,
-                                            delectus totam! Delectus illo magnam voluptatem a tempora id vitae dolor,
-                                            quis natus iusto molestiae ab nam error vero possimus ullam facilis porro
-                                            veritatis?
-                                        </blockquote>
-                                    </div>
-                                </div>
-
+                                {% endfor %}
                             </div>
-                            <div class="swiper-slide">
-
-                                <div class="knsl-testimonial-card">
-                                    <div class="knsl-avatar-frame">
-                                        <img src="{% static  "img/faces/2.jpg" %}" alt="Avatar">
-                                    </div>
-                                    <div class="knsl-name-and-text">
-                                        <h3 class="knsl-mb-10">Emma Trueman</h3>
-                                        <div>From Poland</div>
-                                        <blockquote>
-                                            <ul class="knsl-stars">
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                            </ul>
-                                            Dequi folores dolor sit amet, consectetur adipisicing elit. Nesciunt illo,
-                                            delectus totam! Delectus illo magnam voluptatem a tempora id vitae dolor,
-                                            quis natus iusto molestiae ab nam error vero possimus ullam facilis porro
-                                            veritatis?
-                                        </blockquote>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <div class="knsl-testimonial-card">
-                                    <div class="knsl-avatar-frame">
-                                        <img src="{% static  "img/faces/3.jpg" %}" alt="Avatar">
-                                    </div>
-                                    <div class="knsl-name-and-text">
-                                        <h3 class="knsl-mb-10">Viktoria Freeman</h3>
-                                        <div>From Poland</div>
-                                        <blockquote>
-                                            <ul class="knsl-stars">
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li class="knsl-empty"><i class="fas fa-star"></i></li>
-                                            </ul>
-                                            Dequi folores dolor sit amet, consectetur adipisicing elit. Nesciunt illo,
-                                            delectus totam! Delectus illo magnam voluptatem a tempora id vitae dolor,
-                                            quis natus iusto molestiae ab nam error vero possimus ullam facilis porro
-                                            veritatis?
-                                        </blockquote>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide">
-
-                                <div class="knsl-testimonial-card">
-                                    <div class="knsl-avatar-frame">
-                                        <img src="{% static  "img/faces/4.jpg" %}" alt="Avatar">
-                                    </div>
-                                    <div class="knsl-name-and-text">
-                                        <h3 class="knsl-mb-10">Paul Oldman</h3>
-                                        <div>From Poland</div>
-                                        <blockquote>
-                                            <ul class="knsl-stars">
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                                <li><i class="fas fa-star"></i></li>
-                                            </ul>
-                                            Dequi folores dolor sit amet, consectetur adipisicing elit. Nesciunt illo,
-                                            delectus totam! Delectus illo magnam voluptatem a tempora id vitae dolor,
-                                            quis natus iusto molestiae ab nam error vero possimus ullam facilis porro
-                                            veritatis?
-                                        </blockquote>
-                                    </div>
-                                </div>
-
+                            <div class="knsl-testimonials-nav">
+                                <div class="knsl-testimonials-slider-1-prev"><i class="fas fa-arrow-left"></i></div>
+                                <div class="knsl-testimonials-slider-1-next"><i class="fas fa-arrow-right"></i></div>
                             </div>
                         </div>
-                        <div class="knsl-testimonials-nav">
-                            <div class="knsl-testimonials-slider-1-prev"><i class="fas fa-arrow-left"></i></div>
-                            <div class="knsl-testimonials-slider-1-next"><i class="fas fa-arrow-right"></i></div>
-                        </div>
-                    </div>
-                    <!-- slider end -->
+                        <!-- slider end -->
 
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
     <!-- testimonials end -->
 
     <!-- footer -->
@@ -1137,60 +396,58 @@
             <div class="container knsl-p-100-100">
                 <div class="row">
                     <div class="col-md-6 col-lg-4">
-                        <img class="knsl-footer-logo" src="{% static  "img/logo.png" %}" alt="Kinsley">
-                        <div class="knsl-footer-about">Sequi dolores ratione eos eveniet provident soluta. Omnis
-                            nesciunt sit eos at, eius voluptatum rem corporis. Doloremque labore assumenda
-                            explicabo velit illo, soluta rem, inventore hic.
-                        </div>
+                        <img class="knsl-footer-logo" src="{% static  "img/logo-w.png" %}" alt="Kinsley"
+                             style="height: 44px; width: auto">
+                        <div class="knsl-footer-about">{% trans "Shahar manzaralaridan sokin plyajlargacha, o'zingizning mukammal boshpanangizni toping. Sayohatingiz qayerga olib bormasin, uyingizni uydan uzoqda toping.Sizni 'Status Hotel' mehmonxonasida kutib qolamiz!" %}</div>
                         <div class="knsl-footer-social">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            {% for main_social in main_socials %}
+                                <a href="{{ main_social.link }}" target="_blank"><img style="width: 24px"
+                                                                                      src="{{ main_social.image.url }}"
+                                                                                      alt=""></a>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-2">
-                        <h4>Menu</h4>
+                        <h4>{% trans "Menyu" %}</h4>
                         <ul class="knsl-footer-menu">
-                            <li><a href="#.">Home</a></li>
-                            <li><a href="#.">About us</a></li>
-                            <li><a href="#.">Rooms</a></li>
-                            <li><a href="#.">Our services</a></li>
-                            <li><a href="#.">Contact info</a></li>
+                            <li><a href="/">{% trans "Asosiy" %}</a></li>
+                            <li><a href="{% url 'about' %}">{% trans "Haqida" %}</a></li>
+                            <li><a href="{% url 'rooms' %}">{% trans "Xonalar" %}</a></li>
+                            <li><a href="{% url 'blogs' %}">{% trans "Yangiliklar" %}</a></li>
+                            <li><a href="{% url 'contact' %}">{% trans "Aloqa" %}</a></li>
                         </ul>
                     </div>
                     <div class="col-md-6 col-lg-3">
-                        <h4>Meet Kinsley</h4>
+                        <h4>{% trans "Status bilan tanishing" %}</h4>
                         <ul class="knsl-footer-menu">
-                            <li><a href="#.">Terms and conditions</a></li>
-                            <li><a href="#.">Privacy policy</a></li>
-                            <li><a href="#.">Help center</a></li>
-                            <li><a href="#.">Work with us</a></li>
-                            <li><a href="#.">Sitemap</a></li>
+                            <li><a href="#.">{% trans "Foydalanish shartlari" %}</a></li>
+                            <li><a href="#.">{% trans "Maxfiylik siyosati" %}</a></li>
+                            <li><a href="#.">{% trans "Yordam markazi" %}</a></li>
+                            <li><a href="#.">{% trans "Biz bilan ishlang" %}</a></li>
+                            <li><a href="#.">{% trans "Sayt xaritasi" %}</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h4>Instagram</h4>
-                        <div class="footer-insta">
-                            <a href="#"><img src="{% static  "img/about/1.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static  "img/about/2.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static  "img/about/3.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static  "img/about/4.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static  "img/about/5.jpg" %}" alt="Image"></a>
-                            <a href="#"><img src="{% static  "img/about/6.jpg" %}" alt="Image"></a>
+                    {% if galleries != none %}
+                        <div class="col-md-6 col-lg-3">
+                            <h4>{% trans "Galereya" %}</h4>
+                            <div class="footer-insta">
+                                {% for gallery in galleries %}
+                                    <a href="#"><img src="{{ gallery.image.url }}" alt="Image"></a>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
+
+
                 </div>
             </div>
             <div class="knsl-copyright">
                 <div class="container">
                     <div class="copy-text">
-                        <div>&copy; mid 2021 Kinsley. All Rights Reserved.</div>
+                        <div>{% trans "©Mualliflik huquqi 2024. Barcha huquqlar himoyalangan." %}</div>
                     </div>
                     <div class="copy-menu">
-                        <div>Design by: <a href="https://themeforest.net/user/millerdigitaldesign/portfolio">Nazar
-                            Miller</a></div>
+                        <div>{% trans "Muallif" %} : <a href="https://growyourbusiness.uz/">Webify Agency</a></div>
                     </div>
                 </div>
             </div>
@@ -1210,48 +467,29 @@
     <div class="knsl-popup-frame">
         <div class="knsl-book-form knsl-book-popup">
             <span class="knsl-close-popup">+</span>
-            <h2 class="knsl-mb-40">Search your Room</h2>
+            <h2 class="knsl-mb-40">{% trans "Hoziroq band qiling" %}</h2>
             <form>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
-                            <label>Check in</label>
-                            <input type="text" class="datepicker-here" data-position="bottom left"
-                                   placeholder="Select date" autocomplete="off" readonly="readonly">
+                            <label>{% trans "Ism" %}</label>
+                            <input type="text" name="name" placeholder="{% trans "Ism" %}">
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
-                            <label class="knsl-add-icon">Check out</label>
-                            <input type="text" class="datepicker-here" data-position="bottom left"
-                                   placeholder="Select date" autocomplete="off" readonly="readonly">
+                            <label>{% trans "Davlat nomi" %}</label>
+                            <input type="text" name="country" placeholder="{% trans "Davlat nomi" %}">
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="knsl-select-frame">
-                            <label>Person</label>
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4" disabled>4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="knsl-select-frame">
-                            <label>Childrens</label>
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4" disabled>4</option>
-                            </select>
+                    <div class="col-lg-12">
+                        <div class="knsl-input-frame">
+                            <label>{% trans "Telefon raqam" %}</label>
+                            <input type="text" name="phone_number" placeholder="{% trans "Telefon raqam" %}">
                         </div>
                     </div>
                     <div class="col-lg-12 knsl-center">
-                        <button type="submit" class="knsl-btn"><img src="{% static  "img/icons/search.svg" %}"
-                                                                    class="knsl-zoom" alt="icon">Serch room
+                        <button type="submit" class="knsl-btn">{% trans "Yuborish" %}
                         </button>
                     </div>
                 </div>

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'modeltranslation',
     'admin_interface',
     'colorfield',
+
     'jazzmin',
     'grappelli',
     # The general purpose templates
@@ -52,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'root.urls'
 
 TEMPLATES = [
@@ -67,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "app.context_processors.gallery_footer",
+                "app.context_processors.main_social",
             ],
         },
     },
@@ -78,9 +80,13 @@ WSGI_APPLICATION = 'root.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "status",
+        "USER": "postgres",
+        "PASSWORD": "22",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
 
@@ -105,6 +111,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 20 * 1024 * 1024  # 20 MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 20 * 1024 * 1024  # 20 MB
+
 LANGUAGE_CODE = 'uz'
 
 USE_TZ = True
@@ -119,7 +129,6 @@ LANGUAGES = [
     ('uz', _('Uzbek')),
     ('ru', _('Russian')),
     ('en', _('English')),
-
 ]
 
 LOCALE_PATHS = [
@@ -127,6 +136,7 @@ LOCALE_PATHS = [
 ]
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
+
 MODELTRANSLATION_LANGUAGES = ('uz', 'ru', 'en')
 
 # Static files (CSS, JavaScript, Images)
@@ -136,7 +146,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'app/../media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

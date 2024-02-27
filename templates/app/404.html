@@ -47,7 +47,7 @@
     <!-- datepicker frame -->
     <div class="knsl-datepicker-place"></div>
 
-      <!-- top bar -->
+    <!-- top bar -->
     <div class="knsl-top-bar">
         <div class="container">
             <div class="knsl-left-side">
@@ -86,15 +86,18 @@
                                 <a href="{% url 'contact' %}">{% trans 'Aloqa' %}</a>
                             </li>
 
-                            <li class="menu-item-has-children current-item">
-                                <a href="#">{% trans 'Sahifalar' %}</a>
-                                <ul>
-                                    <li><a href="{% url 'blogs' %}">{% trans 'Yangiliklar' %}</a></li>
-                                    <li><a href="{% url 'gallery' %}">{% trans 'Galereya' %}</a></li>
-                                    <li><a href="{% url 'faq' %}">{% trans 'Savollar' %}</a></li>
-                                </ul>
+                            <li class="menu-item-has-children">
+                                <a href="{% url "blogs" %}">{% trans 'Yangiliklar' %}</a>
+
                             </li>
-                                                        <li class="menu-item-has-children">
+
+
+
+                            <li class="menu-item-has-children">
+                                <a href="{% url 'gallery' %}">{% trans 'Galereya' %}</a>
+                            </li>
+
+                            <li class="menu-item-has-children">
                                 {% with current_language=request.LANGUAGE_CODE %}
                                     {% if current_language == "uz" %}
                                         <a href="#">
@@ -102,53 +105,47 @@
                                         </a>
                                     {% elif current_language == "en" %}
                                         <a href="#">
-                                            <img style="width: 40px" src="{% static 'img/united-kingdom (1).png' %}" alt="">
+                                            <img style="width: 40px" src="{% static 'img/united-kingdom11.png' %}"
+                                                 alt="">
                                         </a>
                                     {% elif current_language == "ru" %}
                                         <a href="#">
                                             <img style="width: 40px" src="{% static 'img/russia.png' %}" alt="">
                                         </a>
                                     {% endif %}
-
-
-
-
-
-
                                     <ul>
                                         <li>
                                             <a href="{% url 'set-language' 'uz' %}">
                                                 <img style="width: 40px" src="{% static 'img/uz.png' %}" alt="">
-                                                {{ _('Uzbek') }}
+                                                Uzbek
                                             </a>
                                         </li>
 
                                         <li>
                                             <a href="{% url 'set-language' 'en' %}">
-                                                <img style="width: 40px" src="{% static 'img/united-kingdom (1).png' %}"
+                                                <img style="width: 40px" src="{% static 'img/united-kingdom11.png' %}"
                                                      alt="">
-                                                {{ _('English') }}
+                                                English
                                             </a>
                                         </li>
 
                                         <li>
                                             <a href="{% url 'set-language' 'ru' %}">
                                                 <img style="width: 40px" src="{% static 'img/russia.png' %}" alt="">
-                                                {{ _('Russian') }}
+                                                Russian
                                             </a>
                                         </li>
                                     </ul>
-
                                 {% endwith %}
                             </li>
 
                         </ul>
-
                     </nav>
                 </div>
                 <!-- menu end -->
                 <!-- action button -->
-                <a id="book-popup" class="knsl-btn"><img src="{% static "img/icons/bookmark.svg" %}" alt="icon">{% trans "Hoziroq band qiling" %}</a>
+                <a id="book-popup" class="knsl-btn"><img src="{% static "img/icons/bookmark.svg" %}"
+                                                         alt="icon">{% trans "Hoziroq band qiling" %}</a>
                 <!-- action button end -->
             </div>
             <!-- menu button -->
@@ -166,11 +163,10 @@
                 <div class="col-lg-12">
 
                     <div class="knsl-center knsl-title-frame">
-                        <h1 class="knsl-h1-inner">Oops! Where are we?</h1>
+                        <h1 class="knsl-h1-inner">{% trans "Voy! Biz qayerdamiz?" %}</h1>
                         <div class="knsl-404">404</div>
-                        <p class="knsl-mb-30">Page not Found! The page you are looking for was moved, removed,<br>
-                            renamed or might never existed.</p>
-                        <a href="home-1.html" class="knsl-btn">Back to Home</a>
+                        <p class="knsl-mb-30">{% trans "Sahifa topilmadi! Siz qidirayotgan sahifa koʻchirilgan, oʻchirilgan, nomi oʻzgartirilgan yoki hech qachon mavjud boʻlmagan boʻlishi mumkin." %}</p>
+                        <a href="/" class="knsl-btn">{% trans "Asosiy sahifaga qaytish" %}</a>
                     </div>
 
                 </div>
@@ -191,48 +187,29 @@
     <div class="knsl-popup-frame">
         <div class="knsl-book-form knsl-book-popup">
             <span class="knsl-close-popup">+</span>
-            <h2 class="knsl-mb-40">Search your Room</h2>
+            <h2 class="knsl-mb-40">{% trans "Hoziroq band qiling" %}</h2>
             <form>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
-                            <label>Check in</label>
-                            <input type="text" class="datepicker-here" data-position="bottom left"
-                                   placeholder="Select date" autocomplete="off" readonly="readonly">
+                            <label>{% trans "Ism" %}</label>
+                            <input type="text" name="name" placeholder="{% trans "Ism" %}">
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
-                            <label class="knsl-add-icon">Check out</label>
-                            <input type="text" class="datepicker-here" data-position="bottom left"
-                                   placeholder="Select date" autocomplete="off" readonly="readonly">
+                            <label>{% trans "Davlat nomi" %}</label>
+                            <input type="text" name="country" placeholder="{% trans "Davlat nomi" %}">
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="knsl-select-frame">
-                            <label>Person</label>
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4" disabled>4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="knsl-select-frame">
-                            <label>Childrens</label>
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4" disabled>4</option>
-                            </select>
+                    <div class="col-lg-12">
+                        <div class="knsl-input-frame">
+                            <label>{% trans "Telefon raqam" %}</label>
+                            <input type="text" name="phone_number" placeholder="{% trans "Telefon raqam" %}">
                         </div>
                     </div>
                     <div class="col-lg-12 knsl-center">
-                        <button type="submit" class="knsl-btn"><img src="{% static "img/icons/search.svg" %}"
-                                                                    class="knsl-zoom" alt="icon">Serch room
+                        <button type="submit" class="knsl-btn">{% trans "Yuborish" %}
                         </button>
                     </div>
                 </div>
