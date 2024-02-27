@@ -61,7 +61,7 @@ def gallery_view(request):
                            "reviews": reviews})
 
 
-def bad_request_view(request):
+def bad_request_view(request, exception):
     return render(request=request, template_name='app/404.html')
 
 

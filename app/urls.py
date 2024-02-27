@@ -18,5 +18,4 @@ urlpatterns = [
     path('blogs/', blogs_view, name='blogs'),
     path('blog_details/<int:blog_id>/', blog_details_view, name='blog_details'),
     path('gallery/', gallery_view, name='gallery'),
-    path('404/', bad_request_view, name='404'),
 ]

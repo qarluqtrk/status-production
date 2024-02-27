@@ -17,3 +17,5 @@ urlpatterns = [
 urlpatterns = [
     *i18n_patterns(*urlpatterns, prefix_default_language=False),
 ]
+
+handler404 = 'app.views.main.bad_request_view'
