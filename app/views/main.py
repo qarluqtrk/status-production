@@ -1,10 +1,22 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.utils.translation import gettext as _
 
-from app.forms import ContactModelForm
-from app.models import Room, Around, Review, Blog, Banner, Amenity, Views, GalleryCategory, Menu, Gallery, Service
+from app.forms import ContactModelForm, BookingModelForm
+from app.models.blog import Blog
+from app.models.gallery import GalleryCategory, Gallery
+from app.models.other import Around, Review, Banner, Views, Service
+from app.models.restaurant import Menu
+from app.models.room import Room, Amenity
 
 
 def index_view(request):
+    if request.method == "POST":
+        form = BookingModelForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    form = BookingModelForm()
     rooms = Room.objects.all()
     arounds = Around.objects.all()[:3]
     reviews = Review.objects.filter(is_active=True, main=True).order_by('created_at').all()
@@ -12,6 +24,7 @@ def index_view(request):
     banner = Banner.objects.first()
     amenities = Amenity.objects.filter(main=True).all()[:4]
     views = Views.objects.all()
+
     return render(request=request, template_name='app/index.html',
                   context={'rooms': rooms,
                            'arounds': arounds,
@@ -19,35 +32,59 @@ def index_view(request):
                            'blogs': blogs,
                            'banner': banner,
                            'amenities': amenities,
-                           'views': views})
+                           'views': views,
+                           'form': form})
 
 
 def about_view(request):
+    if request.method == "POST":
+        form = BookingModelForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    form = BookingModelForm()
     reviews = Review.objects.filter(is_active=True, main=True).order_by('created_at').all()
     blogs = Blog.objects.all()[:3]
-    amenities = Amenity.objects.filter(general=True).all()[:4]
+    amenities = Amenity.objects.filter(general=True).all()
     services = Service.objects.all()
     return render(request=request, template_name='app/about.html',
-                  context={"blogs":blogs,
-                           "reviews":reviews,
-                           "amenities":amenities,
-                           "services":services})
+                  context={"blogs": blogs,
+                           "reviews": reviews,
+                           "amenities": amenities,
+                           "services": services,
+                           "form": form})
 
 
 def contact_view(request):
     if request.method == "POST":
-        form = ContactModelForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-        else:
-            message = "Ma'lumotlarni kiritishda xatolik bor!"
-            # messages.add_message(request, message=message)
-            return redirect('contact')
-    return render(request=request, template_name='app/contact.html')
+        form_type = request.POST.get('form_type')
+        if form_type == 'form1':
+            form = ContactModelForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('index')
+            else:
+                message = _("Telefon raqamingizni kiritishda xatolik bor! Iltimos, to'g'ri raqam kiriting.")
+                messages.add_message(request, messages.ERROR, message)
+                return redirect('contact')
+        elif form_type == 'form2':
+            form = BookingModelForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('index')
+    form = ContactModelForm()
+
+    return render(request=request, template_name='app/contact.html',
+                  context={'form': form})
 
 
 def gallery_view(request):
+    if request.method == "POST":
+        form = BookingModelForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    form = BookingModelForm()
     categories = GalleryCategory.objects.all()
     products = Menu.objects.all()
     images = Gallery.objects.all()
@@ -58,7 +95,8 @@ def gallery_view(request):
                            'products': products,
                            'images': images,
                            "rooms": rooms,
-                           "reviews": reviews})
+                           "reviews": reviews,
+                           "form": form})
 
 
 def bad_request_view(request, exception):

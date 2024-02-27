@@ -218,26 +218,26 @@
                             </div>
 
                             {% for comment in comments %}
-                            	<div class="col-lg-12">
+                                <div class="col-lg-12">
 
-                                <div class="knsl-review-card knsl-scroll-animation">
-                                    <div class="knsl-card-header">
-                                        <div class="knsl-name-and-photo">
-                                            <div class="knsl-avatar-frame">
-                                                <img src="{% static "img/faces/user.png" %}" alt="Avatar">
+                                    <div class="knsl-review-card knsl-scroll-animation">
+                                        <div class="knsl-card-header">
+                                            <div class="knsl-name-and-photo">
+                                                <div class="knsl-avatar-frame">
+                                                    <img src="{% static "img/faces/user.png" %}" alt="Avatar">
+                                                </div>
+                                                <div>
+                                                    <h5>{{ comment.name }}</h5>
+                                                    <span>{{ comment.created_at }}</span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h5>{{ comment.name }}</h5>
-                                                <span>{{ comment.created_at }}</span>
-                                            </div>
+
                                         </div>
+                                        <blockquote>{{ comment.message }}</blockquote>
 
                                     </div>
-                                    <blockquote>{{ comment.message }}</blockquote>
 
                                 </div>
-
-                            </div>
                             {% endfor %}
                         </div>
                     </section>
@@ -249,17 +249,22 @@
                                 <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Izoh qoldirish" %}</h3>
                             </div>
                             <div class="col-lg-12">
-                                <form class="knsl-scroll-animation" method="post" action="{% url "blog_details" blog.id %}">
+                                <form class="knsl-scroll-animation" method="post"
+                                      action="{% url "blog_details" blog.id %}">
                                     {% csrf_token %}
+                                    <input type="hidden" name="form_type" value="form1">
+
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <input type="text" name="name" placeholder="{% trans "Ismi" %}">
+                                            <input type="text" name="name" placeholder="{% trans "Ism" %}">
                                         </div>
                                         <div class="col-lg-6">
-                                            <input type="email" name="email" placeholder="{% trans "Elektron pochta" %}">
+                                            <input type="email" name="email"
+                                                   placeholder="{% trans "Elektron pochta" %}">
                                         </div>
                                         <div class="col-lg-12">
-                                            <textarea name="message" rows="8" placeholder="{% trans "Xabar" %}"></textarea>
+                                            <textarea name="message" rows="8"
+                                                      placeholder="{% trans "Xabar" %}"></textarea>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="knsl-form-submit-frame">
@@ -349,7 +354,7 @@
     <!-- blog end -->
 
     <!-- footer -->
-        <footer>
+    <footer>
         <div class="knsl-footer">
             <div class="container knsl-p-100-100">
                 <div class="row">
@@ -358,9 +363,11 @@
                              style="height: 44px; width: auto">
                         <div class="knsl-footer-about">{% trans "Shahar manzaralaridan sokin plyajlargacha, o'zingizning mukammal boshpanangizni toping. Sayohatingiz qayerga olib bormasin, uyingizni uydan uzoqda toping.Sizni 'Status Hotel' mehmonxonasida kutib qolamiz!" %}</div>
                         <div class="knsl-footer-social">
-                              {% for main_social in main_socials %}
-                              	  <a href="{{ main_social.link }}" target="_blank"><img style="width: 24px" src="{{ main_social.image.url }}" alt=""></a>
-                              {% endfor %}
+                            {% for main_social in main_socials %}
+                                <a href="{{ main_social.link }}" target="_blank"><img style="width: 24px"
+                                                                                      src="{{ main_social.image.url }}"
+                                                                                      alt=""></a>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-2">
@@ -424,48 +431,32 @@
     <div class="knsl-popup-frame">
         <div class="knsl-book-form knsl-book-popup">
             <span class="knsl-close-popup">+</span>
-            <h2 class="knsl-mb-40">Search your Room</h2>
-            <form>
+            <h2 class="knsl-mb-40">{% trans "Hoziroq band qiling" %}</h2>
+            <form method="post" action="{% url "blog_details" blog.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="form2">
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
-                            <label>Check in</label>
-                            <input type="text" class="datepicker-here" data-position="bottom left"
-                                   placeholder="Select date" autocomplete="off" readonly="readonly">
+                            <label>{% trans "Ism" %}</label>
+                            <input type="text" name="name" placeholder="{% trans "Ism" %}">
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
-                            <label class="knsl-add-icon">Check out</label>
-                            <input type="text" class="datepicker-here" data-position="bottom left"
-                                   placeholder="Select date" autocomplete="off" readonly="readonly">
+                            <label>{% trans "Davlat nomi" %}</label>
+                            <input type="text" name="country" placeholder="{% trans "Davlat nomi" %}">
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="knsl-select-frame">
-                            <label>Person</label>
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4" disabled>4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="knsl-select-frame">
-                            <label>Childrens</label>
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4" disabled>4</option>
-                            </select>
+                    <div class="col-lg-12">
+                        <div class="knsl-input-frame">
+                            <label>{% trans "Telefon raqam" %}</label>
+                            <input type="text" name="phone_number" placeholder="{% trans "+9999999999" %}">
                         </div>
                     </div>
                     <div class="col-lg-12 knsl-center">
-                        <button type="submit" class="knsl-btn"><img src="{% static "img/icons/search.svg" %}"
-                                                                    class="knsl-zoom" alt="icon">Serch room
+                        <button type="submit" class="knsl-btn">{% trans "Yuborish" %}
                         </button>
                     </div>
                 </div>

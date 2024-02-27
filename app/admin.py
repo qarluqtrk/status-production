@@ -1,9 +1,11 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
-from app.models import Banner, Amenity, Views, Visitor, Around, Room, RoomImages, RoomCategory, Blog, Review, \
-    RoomAmenity, MenuCategory, Menu, RestaurantResult, RestaurantGallery, GalleryCategory, Gallery, MainSocial, Contact, \
-    Comment
+from app.models.blog import Blog, Comment
+from app.models.gallery import GalleryCategory, Gallery
+from app.models.other import Banner, Views, Visitor, Around, Review, Service, MainSocial, Contact, Booking
+from app.models.restaurant import MenuCategory, Menu, RestaurantResult, RestaurantGallery
+from app.models.room import Amenity, Room, RoomCategory, RoomImages, RoomAmenity
 
 
 class CustomTranslationAdmin(TranslationAdmin):
@@ -88,11 +90,17 @@ class GalleryCategoryAdmin(CustomTranslationAdmin):
     list_display = ('title',)
 
 
+@admin.register(Service)
+class ServiceAdmin(CustomTranslationAdmin):
+    list_display = ('title', "description")
+
+
 admin.site.register([
     RoomImages,
     RoomAmenity,
     Gallery,
     MainSocial,
     Contact,
-    Comment
+    Comment,
+    Booking
 ])

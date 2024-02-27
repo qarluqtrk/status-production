@@ -343,6 +343,32 @@ msgstr "Page not Found! The page you are looking for was moved, removed, renamed
 msgid "Asosiy sahifaga qaytish"
 msgstr "Back to main page"
 
+msgid "Telefon raqamingizni kiritishda xatolik bor! Iltimos, to'g'ri raqam kiriting."
+msgstr "There is an error entering your phone number! Please enter a valid number."
+
+
+msgid "Elektron pochta"
+msgstr "Email"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

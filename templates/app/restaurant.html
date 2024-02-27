@@ -522,7 +522,7 @@
                     <div class="knsl-center knsl-title-frame knsl-scroll-animation knsl-mb-100">
                         <h2 class="knsl-mb-20">{% trans "Bizning yangiliklar" %}</h2>
                         <p class="knsl-mb-30">{% trans "Hotel Statusdagi barcha soʻnggi voqealardan xabardor boʻling! Biz doimo Hotel Status xizmatidagi tajribangizni yaxshilashning yangi usullari ustida ishlaymiz. Yanada qiziqarli yangiliklar va e'lonlarni kutib qoling" %}</p>
-                        <a href="blog.html" class="knsl-btn knsl-btn-md">{% trans "Hamma yangiliklar" %}</a>
+                        <a href="{% url "blogs" %}" class="knsl-btn knsl-btn-md">{% trans "Hamma yangiliklar" %}</a>
                     </div>
 
                 </div>
@@ -630,11 +630,12 @@
     <!-- popup end -->
 
     <!-- popup -->
-    <div class="knsl-popup-frame">
+        <div class="knsl-popup-frame">
         <div class="knsl-book-form knsl-book-popup">
             <span class="knsl-close-popup">+</span>
             <h2 class="knsl-mb-40">{% trans "Hoziroq band qiling" %}</h2>
-            <form>
+            <form method="post" action="{% url "restaurant" %}">
+                {% csrf_token %}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
@@ -651,7 +652,7 @@
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
                             <label>{% trans "Telefon raqam" %}</label>
-                            <input type="text" name="phone_number" placeholder="{% trans "Telefon raqam" %}">
+                            <input type="text" name="phone_number" placeholder="{% trans "+9999999999" %}">
                         </div>
                     </div>
                     <div class="col-lg-12 knsl-center">
@@ -663,6 +664,7 @@
 
         </div>
     </div>
+
     <!-- popup end -->
 
 </div>
@@ -694,5 +696,4 @@
 </body>
 
 
-<!-- Mirrored from miller.bslthemes.com/kinsley-demo/restaurant.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Jan 2024 14:45:23 GMT -->
 </html>

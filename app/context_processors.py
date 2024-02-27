@@ -1,4 +1,5 @@
-from app.models import Gallery, MainSocial
+from app.models.gallery import Gallery
+from app.models.other import MainSocial
 
 
 def gallery_footer(request):

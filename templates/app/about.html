@@ -494,7 +494,8 @@
         <div class="knsl-book-form knsl-book-popup">
             <span class="knsl-close-popup">+</span>
             <h2 class="knsl-mb-40">{% trans "Hoziroq band qiling" %}</h2>
-            <form>
+            <form method="post" action="{% url "about" %}">
+                {% csrf_token %}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
@@ -511,7 +512,7 @@
                     <div class="col-lg-12">
                         <div class="knsl-input-frame">
                             <label>{% trans "Telefon raqam" %}</label>
-                            <input type="text" name="phone_number" placeholder="{% trans "Telefon raqam" %}">
+                            <input type="text" name="phone_number" placeholder="{% trans "+9999999999" %}">
                         </div>
                     </div>
                     <div class="col-lg-12 knsl-center">

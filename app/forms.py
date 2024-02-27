@@ -1,6 +1,7 @@
 from django import forms
 
-from app.models import Contact, Comment, Review
+from app.models.blog import Comment
+from app.models.other import Contact, Review, Booking
 
 
 class ContactModelForm(forms.ModelForm):
@@ -19,3 +20,9 @@ class ReviewModelForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ("name", "country", "message")
+
+
+class BookingModelForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ("name", "country", "phone_number")

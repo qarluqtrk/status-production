@@ -1,7 +1,10 @@
 from modeltranslation.translator import TranslationOptions, register
 
-from app.models import Banner, Amenity, Views, Visitor, Around, Room, RoomCategory, Blog, Review, MenuCategory, Menu, \
-    RestaurantResult, RestaurantGallery, GalleryCategory
+from app.models.blog import Blog
+from app.models.gallery import GalleryCategory
+from app.models.other import Banner,Views, Visitor, Around, Review, Service
+from app.models.restaurant import MenuCategory, Menu, RestaurantResult, RestaurantGallery
+from app.models.room import Room, RoomCategory, Amenity
 
 
 @register(Banner)
@@ -72,3 +75,8 @@ class RestaurantGalleryTranslationOptions(TranslationOptions):
 @register(GalleryCategory)
 class GalleryCategoryTranslationOptions(TranslationOptions):
     fields = ('title',)
+
+
+@register(Service)
+class ServiceTranslationOptions(TranslationOptions):
+    fields = ('title', 'description')
