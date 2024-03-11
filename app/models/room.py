@@ -49,8 +49,8 @@ class RoomImages(models.Model):
 
         img = Image.open(self.image.path)
 
-        max_width = 4000
-        max_height = 3800
+        max_width = 1900
+        max_height = 1800
 
         if img.width > max_width or img.height > max_height:
             new_size = (max_width, max_height)

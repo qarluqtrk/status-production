@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,9 @@
     <!-- kinsley css -->
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <!-- page title -->
+
     <title>Status Hotel</title>
+
 </head>
 
 <body>
@@ -188,32 +190,26 @@
                     <div class="knsl-room-detail-slider-frame knsl-mb-60">
                         <div class="swiper-container knsl-rd-slider-2 knsl-mb-10">
                             <div class="swiper-wrapper">
-                                {% for room_image in room.room_images.all %}
-                                    <div class="swiper-slide">
-                                        <a data-fancybox="gallery" href="{{ room_image.image.url }}"
-                                           class="knsl-room-detail-photo-lg" data-swiper-parallax="-80"
-                                           data-swiper-parallax-scale="1.2" data-swiper-parallax-duration="400"
-                                           style="background-position: center; background-repeat: no-repeat; background-size: contain;
-                width: 100%;">
-                                            <img src="{{ room_image.image.url }}" alt="room"
-                                                 style="background-repeat: no-repeat; background-size: contain;
-                    width: 100%; background-position: center; object-fit: cover;">
-                                            <span class="knsl-zoom"><i class="fas fa-search-plus"></i></span>
-                                        </a>
-                                    </div>
+                                {% for i in room.room_images.all %}
+                                	<div class="swiper-slide">
+                                    <a style="object-fit: cover;height:100%;background-position: center;" data-fancybox="gallery" href="{{ i.image.url }}" class="knsl-room-detail-photo-lg"
+                                       data-swiper-parallax="-80" data-swiper-parallax-scale="1.2"
+                                       data-swiper-parallax-duration="400">
+                                        <img src="{{ i.image.url }}" alt="room">
+                                        <span class="knsl-zoom"><i class="fas fa-search-plus"></i></span>
+                                    </a>
+                                </div>
                                 {% endfor %}
-
                             </div>
                         </div>
                         <div class="swiper-container knsl-rd-slider-1">
                             <div class="swiper-wrapper">
-                                {% for room_image in room.room_images.all %}
-                                    <div class="swiper-slide">
-                                        <div class="knsl-room-detail-photo-sm">
-                                            <img src="{{ room_image.image.url }}" alt="room"
-                                                 style="height: 150px; object-fit: cover;">
-                                        </div>
+                                {% for i in room.room_images.all %}
+                                	 <div class="swiper-slide">
+                                    <div class="knsl-room-detail-photo-sm">
+                                        <img src="{{ i.image.url }}" alt="room">
                                     </div>
+                                </div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -247,82 +243,90 @@
 
 
                     <!-- features -->
-                    <section class="knsl-mb-60">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Qulaylik" %}</h3>
-                            </div>
-                            {% for amenity in amenities %}
-                                <div class="col-6 col-md-3">
-
-                                    <!-- icon box -->
-                                    <div class="knsl-icon-box knsl-icon-box-sm knsl-scroll-animation">
-                                        <img src="{{ amenity.amenity.image.url }}" alt="icon" class="knsl-mb-10">
-                                        <h5>{{ amenity.amenity.title }}</h5>
-                                    </div>
-                                    <!-- icon box end -->
-
+                    {% if amenities %}
+                        <section class="knsl-mb-60">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Qulaylik" %}</h3>
                                 </div>
-                            {% endfor %}
-                        </div>
-                    </section>
+                                {% for amenity in amenities %}
+                                    <div class="col-6 col-md-3">
+
+                                        <!-- icon box -->
+                                        <div class="knsl-icon-box knsl-icon-box-sm knsl-scroll-animation">
+                                            <img src="{{ amenity.amenity.image.url }}" alt="icon" class="knsl-mb-10">
+                                            <h5>{{ amenity.amenity.title }}</h5>
+                                        </div>
+                                        <!-- icon box end -->
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </section>
+                    {% endif %}
                     <!-- features end -->
 
                     <!-- services -->
-                    <section class="knsl-mb-30">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Mehmonxona atrofida" %}</h3>
-                            </div>
-                            {% for around in arounds %}
-                                <div class="col-lg-4">
-                                    <!-- service card -->
-                                    <div class="knsl-ath-card knsl-scroll-animation">
-                                        <div class="knsl-cover-frame">
-                                            <img src="{{ around.image.url }}" alt="cover">
-                                        </div>
-                                        <div class="knsl-card-description">
-                                            <h5>{{ around.title }}</h5>
-                                        </div>
-                                    </div>
-                                    <!-- service card end -->
-
+                    {% if arounds %}
+                        <section class="knsl-mb-30">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Mehmonxona atrofida" %}</h3>
                                 </div>
-                            {% endfor %}
-                        </div>
-                    </section>
-                    <!-- services end -->
+                                {% for around in arounds %}
+                                    <div class="col-lg-4">
+                                        <!-- service card -->
+                                        <div class="knsl-ath-card knsl-scroll-animation">
+                                            <div class="knsl-cover-frame">
+                                                <img src="{{ around.image.url }}" alt="cover">
+                                            </div>
+                                            <div class="knsl-card-description">
+                                                <h5>{{ around.title }}</h5>
+                                            </div>
+                                        </div>
+                                        <!-- service card end -->
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </section>
+                        <!-- services end -->
+
+                    {% endif %}
 
                     <!-- reviews -->
-                    <section class="knsl-mb-30">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Sharhlar" %}</h3>
-                            </div>
-                            {% for review in reviews %}
+                    {% if reviews %}
+                        <section class="knsl-mb-30">
+                            <div class="row">
                                 <div class="col-lg-12">
+                                    <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Sharhlar" %}</h3>
+                                </div>
+                                {% for review in reviews %}
+                                    <div class="col-lg-12">
 
-                                    <div class="knsl-review-card knsl-scroll-animation">
-                                        <div class="knsl-card-header">
-                                            <div class="knsl-name-and-photo">
-                                                <div class="knsl-avatar-frame">
-                                                    <img src="{% static "img/faces/user.png" %}" alt="Avatar">
+                                        <div class="knsl-review-card knsl-scroll-animation">
+                                            <div class="knsl-card-header">
+                                                <div class="knsl-name-and-photo">
+                                                    <div class="knsl-avatar-frame">
+                                                        <img src="{% static "img/faces/user.png" %}" alt="Avatar">
+                                                    </div>
+                                                    <div>
+                                                        <h5>{{ review.name }}</h5>
+                                                        <span>{{ review.created_at }}</span>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <h5>{{ review.name }}</h5>
-                                                    <span>{{ review.created_at }}</span>
-                                                </div>
+
                                             </div>
+                                            <blockquote>{{ review.message }}</blockquote>
 
                                         </div>
-                                        <blockquote>{{ review.message }}</blockquote>
 
                                     </div>
+                                {% endfor %}
+                            </div>
+                        </section>
 
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </section>
+                    {% endif %}
                     <!-- reviews end -->
 
                     <section>
