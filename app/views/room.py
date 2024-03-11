@@ -14,7 +14,7 @@ def rooms_view(request):
             return redirect('index')
     form = BookingModelForm()
     categories = RoomCategory.objects.all()
-    rooms = Room.objects.all()
+    rooms = Room.objects.order_by("-id").all()
     paginator = Paginator(rooms, per_page=6)
     page_number = request.GET.get('page')
     rooms_list = paginator.get_page(page_number)

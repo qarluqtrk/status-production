@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
 from app.forms import BookingModelForm
+from app.models.blog import Blog
 from app.models.other import Review
 from app.models.restaurant import RestaurantResult, Menu, RestaurantGallery, MenuCategory
 
@@ -15,11 +16,13 @@ def restaurant_view(request):
     form = BookingModelForm()
     restaurant_results = RestaurantResult.objects.all()
     products = Menu.objects.all()
+    blogs = Blog.objects.order_by("-created_at").all()[:3]
     restaurant_galleries = RestaurantGallery.objects.all()
     return render(request=request, template_name='app/restaurant.html',
                   context={'restaurant_results': restaurant_results,
                            'products': products,
                            'restaurant_galleries': restaurant_galleries,
+                           "blogs": blogs,
                            'form': form})
 
 

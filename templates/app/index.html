@@ -8,7 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href={% static "img/logo.png" %} type="image/x-icon">
+    <meta name="description"
+          content="{% trans "Status mehmonxonasida Qarshining mehmondo‘stligini his eting.Bizning mazali bepul nonushta bufetimiz bilan kuningizni to'g'ri boshlang. Mehmonxona bo'ylab bepul Wi-Fi bilan aloqada bo'ling va ochiq terasimizda dam olishdan zavqlaning. Bizning umumiy oshxona va dam olish maskanlarimiz sayohatchilar bilan bog'lanish yoki bir kunlik kashfiyotdan keyin dam olish imkonini beradi.24 soat xizmat ko'rsatadigan ko'p tilli xodimlarimiz sizga tavsiyalar, mahalliy ma'lumotlar yoki sizga kerak bo'lgan barcha narsalar bilan yordam berishdan mamnun.Status Hotel Qarshi aeroportidan atigi 4 km uzoqlikda joylashgan bo'lib , u biznes va dam olish maqsadida sayohat qiluvchilar uchun ideal tanlovdir.“Status Hotel” mehmonxonasida bo'ling va Qarshining jozibasidan bahramand bo'ling!" %}">
+    <meta name="keywords"
+          content="{% trans "Qarshi mehmonxonasi, 3 yulduzli mehmonxona,3 yulduzli mehmonxona Qarshi,Turar joy, Mehmonxona, Status Hotel, Hotel Status, Qarshi status,O'zbekiston mehmoxona,O'zbekiston mehmoxonalari,Eng yaxshi mehmonxona, Chiroyli mehmonxona, Qarshi mehmonxona, Bepul Wi-Fi mavjud Qarshi mehmonxonalari,Qarshida bepul avtoturargohga ega mehmonxonalar,Qarshidagi arzon mehmonxonalar,Qarshi aeroporti mehmonxonalari, Status,Qarshi shahridagi mehmonxonalar,Qarshi shahridagi mehmonxona,Umumiy oshxonaga ega Qarshi mehmonxonasi,Terasli Qarshi mehmonxonasi,Shahar manzarali xonalar bilan Qarshi mehmonxonasi,Qarshi mehmonxonasi Nonushta bilan,Qarshi mehmonxonasi 24 soatlik resepsiyonga ega,Qarshi mehmonxonasi aeroport yaqinida,Qarshi shahridagi oilaviy mehmonxonalar" %}">
+    <meta name="author" content="Status Hotel">
+    <link rel="shortcut icon" href={% static "img/main_logo.png" %} type="image/x-icon">
     <!-- bootstrap css -->
     <link rel="stylesheet" href={% static "css/plugins/bootstrap.min.css" %}>
     <!-- swiper css -->
@@ -23,8 +28,8 @@
     <link rel="stylesheet" href={% static "css/plugins/datepicker.css" %}>
     <!-- kinsley css -->
     <link rel="stylesheet" href={% static "css/style.css" %}>
-
-
+    <meta name="yandex-verification" content="1fa4afa68c6ed5aa"/>
+    <meta name="google-site-verification" content="LoObSoTr2jG4scZl-uPZwwusX3iS8wTNy-GpaHEuuKk"/>
     <!-- page title -->
     <title>Status Hotel</title>
 </head>
@@ -585,7 +590,7 @@
     <!-- blog end -->
 
     <!-- footer -->
-        <footer>
+    <footer>
         <div class="knsl-footer">
             <div class="container knsl-p-100-100">
                 <div class="row">
@@ -594,9 +599,11 @@
                              style="height: 44px; width: auto">
                         <div class="knsl-footer-about">{% trans "Shahar manzaralaridan sokin plyajlargacha, o'zingizning mukammal boshpanangizni toping. Sayohatingiz qayerga olib bormasin, uyingizni uydan uzoqda toping.Sizni 'Status Hotel' mehmonxonasida kutib qolamiz!" %}</div>
                         <div class="knsl-footer-social">
-                              {% for main_social in main_socials %}
-                              	  <a href="{{ main_social.link }}" target="_blank"><img style="width: 24px" src="{{ main_social.image.url }}" alt=""></a>
-                              {% endfor %}
+                            {% for main_social in main_socials %}
+                                <a href="{{ main_social.link }}" target="_blank"><img style="width: 24px"
+                                                                                      src="{{ main_social.image.url }}"
+                                                                                      alt=""></a>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-2">
@@ -639,7 +646,7 @@
                         <div>{% trans "©Mualliflik huquqi 2024. Barcha huquqlar himoyalangan." %}</div>
                     </div>
                     <div class="copy-menu">
-                        <div>{% trans "Muallif" %} : <a href="https://growyourbusiness.uz/">Webify Agency</a></div>
+                        <div>{% trans "Muallif" %} : <a href="https://webify.uz/" target="_blank">Webify Agency</a></div>
                     </div>
                 </div>
             </div>
