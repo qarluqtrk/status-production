@@ -3,7 +3,7 @@ from modeltranslation.admin import TranslationAdmin
 
 from app.models.blog import Blog, Comment
 from app.models.gallery import GalleryCategory, Gallery
-from app.models.other import Banner, Views, Visitor, Around, Review, Service, MainSocial, Contact, Booking
+from app.models.other import Banner, Views, Visitor, Around, Review, Service, MainSocial, Contact, Booking, QRCodeURL
 from app.models.restaurant import MenuCategory, Menu, RestaurantResult, RestaurantGallery
 from app.models.room import Amenity, Room, RoomCategory, RoomImages, RoomAmenity
 
@@ -102,5 +102,6 @@ admin.site.register([
     MainSocial,
     Contact,
     Comment,
-    Booking
+    Booking,
+    QRCodeURL
 ])

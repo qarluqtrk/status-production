@@ -258,3 +258,10 @@ class Booking(models.Model):
         return self.name
 
 
+# models.py
+
+class QRCodeURL(models.Model):
+    url = models.URLField()
+
+    def __str__(self):
+        return self.url
