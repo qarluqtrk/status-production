@@ -5,7 +5,7 @@ from django.utils.translation import gettext as _
 from app.forms import ContactModelForm, BookingModelForm
 from app.models.blog import Blog
 from app.models.gallery import GalleryCategory, Gallery
-from app.models.other import Around, Review, Banner, Views, Service
+from app.models.other import Around, Review, Banner, Views, Service, Visitor
 from app.models.restaurant import Menu
 from app.models.room import Room, Amenity
 
@@ -24,6 +24,7 @@ def index_view(request):
     banner = Banner.objects.first()
     amenities = Amenity.objects.filter(main=True).all()[:4]
     views = Views.objects.all()
+    visitors = Visitor.objects.all()
 
     return render(request=request, template_name='app/index.html',
                   context={'rooms': rooms,
@@ -33,7 +34,8 @@ def index_view(request):
                            'banner': banner,
                            'amenities': amenities,
                            'views': views,
-                           'form': form})
+                           'form': form,
+                           'visitors': visitors})
 
 
 def about_view(request):

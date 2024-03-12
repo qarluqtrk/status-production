@@ -17,11 +17,11 @@ def restaurant_view(request):
     restaurant_results = RestaurantResult.objects.all()
     products = Menu.objects.all()
     blogs = Blog.objects.order_by("-created_at").all()[:3]
-    restaurant_galleries = RestaurantGallery.objects.all()
+    galleries = RestaurantGallery.objects.all()
     return render(request=request, template_name='app/restaurant.html',
                   context={'restaurant_results': restaurant_results,
                            'products': products,
-                           'restaurant_galleries': restaurant_galleries,
+                           'galleries': galleries,
                            "blogs": blogs,
                            'form': form})
 

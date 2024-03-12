@@ -168,7 +168,6 @@
                         <ul class="knsl-breadcrumbs">
                             <li><a href="/">{% trans "Asosiy" %}</a></li>
                             <li><a href="{% url "blogs" %}">{% trans "Yangiliklar" %}</a></li>
-                            <li><span>{{ blog.title }}</span></li>
                         </ul>
                     </div>
 
@@ -213,10 +212,12 @@
                     <!-- comments -->
                     <section class="knsl-mb-30">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Izohlar" %}</h3>
-                            </div>
+                            {% if comments %}
+                                <div class="col-lg-12">
+                                    <h3 class="knsl-mb-40 knsl-scroll-animation">{% trans "Izohlar" %}</h3>
+                                </div>
 
+                            {% endif %}
                             {% for comment in comments %}
                                 <div class="col-lg-12">
 
@@ -410,7 +411,8 @@
                         <div>{% trans "©Mualliflik huquqi 2024. Barcha huquqlar himoyalangan." %}</div>
                     </div>
                     <div class="copy-menu">
-                        <div>{% trans "Muallif" %} : <a href="https://webify.uz/" target="_blank">Webify Agency</a></div>
+                        <div>{% trans "Muallif" %} : <a href="https://webify.uz/" target="_blank">Webify Agency</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -191,25 +191,28 @@
                         <div class="swiper-container knsl-rd-slider-2 knsl-mb-10">
                             <div class="swiper-wrapper">
                                 {% for i in room.room_images.all %}
-                                	<div class="swiper-slide">
-                                    <a style="object-fit: cover;height:100%;background-position: center;" data-fancybox="gallery" href="{{ i.image.url }}" class="knsl-room-detail-photo-lg"
-                                       data-swiper-parallax="-80" data-swiper-parallax-scale="1.2"
-                                       data-swiper-parallax-duration="400">
-                                        <img src="{{ i.image.url }}" alt="room">
-                                        <span class="knsl-zoom"><i class="fas fa-search-plus"></i></span>
-                                    </a>
-                                </div>
+                                    <div class="swiper-slide">
+                                        <a data-fancybox="gallery" href="{{ i.image.url }}"
+                                           class="knsl-room-detail-photo-lg"
+                                           data-swiper-parallax="-80" data-swiper-parallax-scale="1.2"
+                                           data-swiper-parallax-duration="400">
+                                            <img src="{{ i.image.url }}" alt="room" style="object-fit: cover;
+                                     width: 100%;height: 100%;">
+                                            <span class="knsl-zoom"><i class="fas fa-search-plus"></i></span>
+                                        </a>
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>
                         <div class="swiper-container knsl-rd-slider-1">
                             <div class="swiper-wrapper">
                                 {% for i in room.room_images.all %}
-                                	 <div class="swiper-slide">
-                                    <div class="knsl-room-detail-photo-sm">
-                                        <img src="{{ i.image.url }}" alt="room">
+                                    <div class="swiper-slide">
+                                        <div class="knsl-room-detail-photo-sm">
+                                            <img src="{{ i.image.url }}" alt="room" style="object-fit: cover;
+                                     width: 100%;height: 100%;">
+                                        </div>
                                     </div>
-                                </div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -217,10 +220,13 @@
 
 
                     <!-- description -->
-                    <section class="knsl-mb-60 knsl-scroll-animation">
-                        <h3 class="knsl-mb-40">{% trans "Xonaning tavsifi" %}</h3>
-                        <p>{{ room.description }}</p>
-                    </section>
+                    {% if  room.description %}
+                        <section class="knsl-mb-60 knsl-scroll-animation">
+                            <h3 class="knsl-mb-40">{% trans "Xonaning tavsifi" %}</h3>
+                            <p>{{ room.description }}</p>
+                        </section>
+                    {% endif %}
+
                     <!-- description end -->
                     {##}
                     {#                    <!-- map -->#}
