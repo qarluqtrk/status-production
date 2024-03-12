@@ -17,7 +17,7 @@ urlpatterns = [
     path('blogs/', blogs_view, name='blogs'),
     path('blog_details/<int:blog_id>/', blog_details_view, name='blog_details'),
     path('gallery/', gallery_view, name='gallery'),
-    path('review/', review, name='review'),
+    path('review/', review, name='review')
 
 
 ]
